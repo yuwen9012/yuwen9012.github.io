@@ -148,6 +148,96 @@
       });
   })();
 
+  /* ---- Screenshot lightbox -------------------------------------------- */
+  /* Screenshots are 1600px wide but display at about a third of that in the
+     three-up grid, so the detail is only reachable by enlarging them.
+     Progressive enhancement: the markup is a plain <img>, and this turns it
+     into a button. Without JS, or without <dialog>, the image still shows. */
+  (function initLightbox() {
+    var shots = document.querySelectorAll(".shot:not(.shot--empty)");
+    if (!shots.length) return;
+    if (!window.HTMLDialogElement || !HTMLDialogElement.prototype.showModal) return;
+
+    var zh = (document.documentElement.lang || "").toLowerCase().indexOf("zh") === 0;
+    var T = zh
+      ? { zoom: "放大檢視", hint: "點擊放大", close: "關閉", sep: "：" }
+      : { zoom: "View larger", hint: "Click to enlarge", close: "Close", sep: ": " };
+
+    var ICON_ZOOM =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+      'stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/>' +
+      '<path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>';
+    var ICON_CLOSE =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" ' +
+      'stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+
+    var dialog, dImg, dCap, opener;
+
+    function ensureDialog() {
+      if (dialog) return dialog;
+      dialog = document.createElement("dialog");
+      dialog.className = "lightbox";
+      dialog.setAttribute("aria-label", T.zoom);
+      dialog.innerHTML =
+        '<button type="button" class="lightbox__close" aria-label="' + T.close + '">' +
+        ICON_CLOSE + "</button>" +
+        '<figure class="lightbox__figure">' +
+        '<img class="lightbox__img" alt="">' +
+        '<figcaption class="lightbox__caption"></figcaption>' +
+        "</figure>";
+      document.body.appendChild(dialog);
+
+      dImg = dialog.querySelector(".lightbox__img");
+      dCap = dialog.querySelector(".lightbox__caption");
+
+      dialog.querySelector(".lightbox__close")
+        .addEventListener("click", function () { dialog.close(); });
+
+      /* The dialog's own box is just the panel, so a click whose target is the
+         dialog itself landed on the backdrop. */
+      dialog.addEventListener("click", function (ev) {
+        if (ev.target === dialog) dialog.close();
+      });
+
+      /* showModal already restores focus, but only when the opener is still in
+         the document; setting it back explicitly costs nothing. */
+      dialog.addEventListener("close", function () {
+        dImg.removeAttribute("src");
+        if (opener) { opener.focus(); opener = null; }
+      });
+
+      return dialog;
+    }
+
+    Array.prototype.forEach.call(shots, function (shot) {
+      var img = shot.querySelector("img");
+      if (!img) return;
+
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "shot__trigger";
+      btn.setAttribute("aria-label", T.zoom + (img.alt ? T.sep + img.alt : ""));
+      img.parentNode.insertBefore(btn, img);
+      btn.appendChild(img);
+
+      var hint = document.createElement("span");
+      hint.className = "shot__hint";
+      hint.innerHTML = ICON_ZOOM + "<span>" + T.hint + "</span>";
+      btn.appendChild(hint);
+
+      btn.addEventListener("click", function () {
+        var d = ensureDialog();
+        opener = btn;
+        dImg.src = img.currentSrc || img.src;
+        dImg.alt = img.alt || "";
+        var cap = shot.parentNode.querySelector(".shot-caption");
+        dCap.textContent = cap ? cap.textContent.trim() : (img.alt || "");
+        dCap.hidden = !dCap.textContent;
+        d.showModal();
+      });
+    });
+  })();
+
   /* ---- Theme toggle -------------------------------------------------- */
   var toggle = document.querySelector(".theme-toggle");
 

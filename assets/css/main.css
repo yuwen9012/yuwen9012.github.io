@@ -675,6 +675,96 @@ pre.mermaid[data-processed="true"] {
 }
 .shot img { display: block; width: 100%; height: auto; }
 
+/* The trigger is added by JS, so without it the screenshot still renders
+   as a plain image — it just does not open. */
+.shot__trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  position: relative;
+  color: inherit;
+  font: inherit;
+}
+.shot__trigger img { transition: opacity 200ms var(--ease); }
+.shot__trigger:hover img { opacity: 0.88; }
+
+.shot__hint {
+  position: absolute;
+  right: var(--s-2);
+  bottom: var(--s-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--ink-strong) 82%, transparent);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transition: opacity 200ms var(--ease);
+  pointer-events: none;
+}
+.shot__hint svg { width: 12px; height: 12px; }
+.shot__trigger:hover .shot__hint,
+.shot__trigger:focus-visible .shot__hint { opacity: 1; }
+
+/* Lightbox */
+.lightbox {
+  width: min(96vw, 1600px);
+  max-width: none;
+  max-height: 94vh;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  overflow: hidden;
+}
+.lightbox::backdrop {
+  background: rgb(9 9 11 / 0.84);
+  backdrop-filter: blur(3px);
+}
+.lightbox__figure { margin: 0; display: flex; flex-direction: column; }
+.lightbox__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(94vh - 5rem);
+  object-fit: contain;
+  background: var(--surface-sunk);
+}
+.lightbox__caption {
+  padding: var(--s-3) var(--s-4);
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.lightbox__close {
+  position: absolute;
+  top: var(--s-2);
+  right: var(--s-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(6px);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 180ms var(--ease), color 180ms var(--ease);
+}
+.lightbox__close:hover { border-color: var(--accent); color: var(--accent); }
+.lightbox__close svg { width: 18px; height: 18px; }
+
 /* Placeholder until a real screenshot is dropped in. */
 .shot--empty {
   display: grid;
