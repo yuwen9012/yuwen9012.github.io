@@ -164,7 +164,7 @@ h1, h2, h3, h4 {
 }
 
 .display {
-  font-size: clamp(2.25rem, 5.5vw, 4.25rem);
+  font-size: clamp(1.875rem, 5.5vw, 4.25rem);
   line-height: 1.12;
   letter-spacing: -0.03em;
   font-weight: 700;
@@ -285,10 +285,6 @@ p + p { margin-top: var(--s-3); }
 .site-nav a:hover,
 .site-nav a[aria-current="page"] { color: var(--ink-strong); }
 
-@media (max-width: 40rem) {
-  .site-nav__links { display: none; }
-}
-
 .nav-tools { display: flex; align-items: center; gap: var(--s-1); margin-left: var(--s-2); }
 
 .lang-switch {
@@ -394,7 +390,7 @@ p + p { margin-top: var(--s-3); }
 }
 .project-item:hover .project-item__title { background-size: 100% 1px; }
 
-.project-item__desc { color: var(--muted); margin-top: var(--s-2); max-width: 36rem; }
+.project-item__desc { display: block; color: var(--muted); margin-top: var(--s-2); max-width: 36rem; }
 
 .project-item__meta {
   display: flex;
@@ -476,7 +472,7 @@ p + p { margin-top: var(--s-3); }
 
 .factsheet {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
   gap: var(--s-4);
   margin-top: var(--s-6);
   padding-top: var(--s-5);
@@ -637,7 +633,89 @@ p + p { margin-top: var(--s-3); }
 }
 .todo::before { content: "TODO "; opacity: 0.6; }
 
-/* ---------- 13. Reveal animation ---------- */
+/* ---------- 13. Responsive ---------- */
+
+/* Sticky header would otherwise cover anchor targets. */
+[id] { scroll-margin-top: 5rem; }
+
+/* Long unbroken strings must never force a horizontal scrollbar. */
+body, .display, .project-item__title, .next-case__title { overflow-wrap: break-word; }
+
+/* Tablet and below — tighten the vertical rhythm. */
+@media (max-width: 48rem) {
+  :root {
+    --s-6: 2.25rem;
+    --s-7: 3rem;
+    --s-8: 4rem;
+  }
+  .hero { padding-block: var(--s-7) var(--s-6); }
+  .case-hero { padding-block: var(--s-6) var(--s-5); }
+  .section-head { flex-wrap: wrap; gap: var(--s-1); }
+  .section-head .eyebrow { flex-basis: 100%; }
+}
+
+/* Phone. */
+@media (max-width: 40rem) {
+  :root {
+    --s-6: 2rem;
+    --s-7: 2.5rem;
+    --s-8: 3.25rem;
+  }
+
+  [id] { scroll-margin-top: 7.5rem; }
+
+  .container { padding-inline: 1.25rem; }
+
+  /* Header wraps to two rows: brand + tools, then the nav links below. */
+  .site-header__inner {
+    flex-wrap: wrap;
+    min-height: 0;
+    padding-block: var(--s-2);
+    gap: var(--s-2);
+    row-gap: 0;
+  }
+  .brand { flex: 1 1 auto; }
+  .nav-tools { order: 2; margin-left: auto; }
+  .site-nav { order: 3; flex-basis: 100%; margin-left: 0; }
+  .site-nav__links {
+    width: 100%;
+    justify-content: space-between;
+    gap: var(--s-2);
+    border-top: 1px solid var(--border);
+  }
+  .site-nav a { min-height: 42px; padding-inline: 0; font-size: 0.8125rem; }
+
+  /* Drop the designed line break; let the headline wrap to the viewport. */
+  .display br { display: none; }
+
+  .hero__actions .btn { flex: 1 1 100%; justify-content: center; }
+
+  .decision { padding: var(--s-4); }
+  .decision dl { gap: 0; }
+  .decision dt { margin-top: var(--s-3); }
+  .decision dt:first-of-type { margin-top: 0; }
+
+  .factsheet { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); }
+  .metrics { grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
+  .figure { padding: var(--s-4); }
+
+  .contact-row { flex-direction: column; gap: 0; }
+  .contact-row dt { width: auto; }
+
+  .next-case { flex-wrap: wrap; }
+  .next-case > svg { display: none; }
+
+  .site-footer__inner { flex-direction: column; gap: var(--s-1); }
+}
+
+/* Small phones (360px and under). */
+@media (max-width: 22.5rem) {
+  .site-nav a { font-size: 0.75rem; }
+  .project-item { gap: var(--s-2) var(--s-3); }
+  .factsheet { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------- 14. Reveal animation ---------- */
 .reveal { opacity: 0; transform: translateY(12px); }
 .reveal.is-visible {
   opacity: 1;
@@ -654,7 +732,7 @@ p + p { margin-top: var(--s-3); }
   }
 }
 
-/* ---------- 14. Print ---------- */
+/* ---------- 15. Print ---------- */
 @media print {
   .site-header, .next-case, .site-footer, .hero__actions, .todo { display: none; }
   body { background: #fff; color: #000; font-size: 11pt; line-height: 1.5; }
