@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mallory Chen — 產品經理 / 系統分析</title>
+<meta name="description" content="產品經理與系統分析作品集：三個從需求訪談到上線的完整案例，涵蓋企業內部系統與高教數位轉型。">
+
+<link rel="canonical" href="https://mallorychen.github.io/">
+<link rel="alternate" hreflang="zh-Hant" href="https://mallorychen.github.io/">
+<link rel="alternate" hreflang="en" href="https://mallorychen.github.io/en/">
+<link rel="alternate" hreflang="x-default" href="https://mallorychen.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mallory Chen — 產品經理 / 系統分析">
+<meta property="og:description" content="三個從需求訪談到上線的完整案例，涵蓋企業內部系統與高教數位轉型。">
+<meta property="og:url" content="https://mallorychen.github.io/">
+<meta property="og:locale" content="zh_TW">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/css/main.css">
+
+<script>
+  /* Applied before paint so the page never flashes the wrong theme. */
+  try {
+    var t = localStorage.getItem("theme");
+    if (t) document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">跳至主要內容</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <!-- TODO：若要顯示中文全名，把下一行的 Mallory Chen 換掉 -->
+    <a class="brand" href="/">Mallory<span>.</span>Chen</a>
+
+    <nav class="site-nav" aria-label="主要導覽">
+      <div class="site-nav__links">
+        <a href="#work">作品</a>
+        <a href="#capabilities">能力</a>
+        <a href="#about">關於</a>
+        <a href="#contact">聯絡</a>
+      </div>
+      <div class="nav-tools">
+        <div class="lang-switch">
+          <a href="/" aria-current="true" lang="zh-Hant">中</a>
+          <a href="/en/" lang="en">EN</a>
+        </div>
+        <button class="theme-toggle" type="button" aria-label="切換深色模式">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero">
+    <div class="container">
+      <p class="hero__role reveal">Product Manager &middot; System Analyst</p>
+      <h1 class="display hero__title reveal" data-reveal-delay="60">
+        把模糊的業務問題，<br>
+        拆成工程師做得出來的規格。
+      </h1>
+      <p class="lede hero__lede reveal" data-reveal-delay="120">
+        我是 Mallory，在 <span class="todo">填入年資</span> 的時間裡獨立擔任三套系統的產品負責人——
+        從需求訪談、流程與資料設計，一路帶到上線與後續迭代。
+        團隊都不大，所以每一個決策我都得自己想清楚，也自己扛。
+      </p>
+      <div class="hero__actions reveal" data-reveal-delay="180">
+        <a class="btn" href="#work">
+          看三個案例
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <!-- TODO：把履歷 PDF 放到 /resume.pdf -->
+        <a class="btn btn--ghost" href="/resume.pdf">
+          下載履歷 PDF
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Work ============ -->
+  <section class="section" id="work">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">01 &mdash; Work</span>
+        <h2>三個重點案例</h2>
+      </div>
+      <p class="lede measure reveal" style="margin-bottom:var(--s-6)">
+        三個專案跨越企業內部系統與高教數位轉型，使用者從內部員工、行政主管到跨國學生。
+        每個案例都完整交代：問題從哪來、我在岔路上選了什麼、最後驗證了什麼。
+      </p>
+
+      <div class="project-list">
+
+        <a class="project-item reveal" href="projects/ehsn-booking/">
+          <span class="project-item__num">01</span>
+          <span class="project-item__body">
+            <span class="project-item__title">東森栢馥預約管理系統</span>
+            <span class="tag" style="margin-left:.6rem;vertical-align:.18em">進行中</span>
+            <span class="project-item__desc">
+              <span class="todo">一句話說明這套系統解決什麼問題、替誰解決</span>
+            </span>
+            <span class="project-item__meta">
+              <span>內部員工系統</span>
+              <span>PM / SA / UI&middot;UX</span>
+              <span>團隊 3 人</span>
+              <span>9 個月</span>
+            </span>
+          </span>
+          <span class="project-item__arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+        <a class="project-item reveal" href="projects/fju-admissions/">
+          <span class="project-item__num">02</span>
+          <span class="project-item__body">
+            <span class="project-item__title">輔仁大學 &mdash; 招生戰情室</span>
+            <span class="project-item__desc">
+              <span class="todo">一句話說明這套系統解決什麼問題、替誰解決</span>
+            </span>
+            <span class="project-item__meta">
+              <span>高教數位轉型 &middot; 乙方交付</span>
+              <span>PM / SA / UI&middot;UX</span>
+              <span>團隊 7 人</span>
+              <span>6 個月</span>
+            </span>
+          </span>
+          <span class="project-item__arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+        <a class="project-item reveal" href="projects/fju-intl-portal/">
+          <span class="project-item__num">03</span>
+          <span class="project-item__body">
+            <span class="project-item__title">輔仁大學 &mdash; 外國學生資訊入口網</span>
+            <span class="project-item__desc">
+              <span class="todo">一句話說明這套系統解決什麼問題、替誰解決</span>
+            </span>
+            <span class="project-item__meta">
+              <span>高教數位轉型 &middot; 乙方交付</span>
+              <span>PM / SA / UI&middot;UX</span>
+              <span>團隊 4 人</span>
+              <span>6 個月</span>
+            </span>
+          </span>
+          <span class="project-item__arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Capabilities ============ -->
+  <section class="section" id="capabilities">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">02 &mdash; Capabilities</span>
+        <h2>我怎麼工作</h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="capability reveal">
+          <span class="capability__num">A</span>
+          <h3>需求釐清與規格化</h3>
+          <p>訪談使用者與關鍵人，把「我想要一個系統」翻譯成可驗收的功能規格、流程圖與驗收條件，讓工程師不用猜。</p>
+        </div>
+        <div class="capability reveal" data-reveal-delay="60">
+          <span class="capability__num">B</span>
+          <h3>系統與資料設計</h3>
+          <p>設計資料模型、狀態流轉與權限邊界。因為同時扮演 SA，規格寫出來前就已經確認技術上做得到、也擴充得下去。</p>
+        </div>
+        <div class="capability reveal" data-reveal-delay="120">
+          <span class="capability__num">C</span>
+          <h3>跨部門推動與交付</h3>
+          <p>在 3 到 7 人的團隊裡排優先順序、控時程、對齊甲方期待，並負責上線溝通與版本節奏。</p>
+        </div>
+        <div class="capability reveal" data-reveal-delay="180">
+          <span class="capability__num">D</span>
+          <h3>介面與體驗設計</h3>
+          <p>三個專案的 UI/UX 都由我自己完成。畫得出畫面，代表需求討論可以直接指著介面談，省下大量來回。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ About ============ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">03 &mdash; About</span>
+        <h2>關於我</h2>
+      </div>
+      <div class="prose measure reveal">
+        <p><span class="todo">三到四段自我介紹。建議寫：(1) 你怎麼走到 PM/SA 這條路 (2) 你最擅長什麼樣的專案 (3) 你在找什麼樣的下一份工作</span></p>
+        <p>
+          我目前同時扮演產品經理、系統分析與介面設計三個角色。這不是因為我想包山包海，
+          而是在小團隊裡，這三件事本來就沒辦法切開——需求沒釐清就畫不出流程，流程沒定就切不出畫面。
+        </p>
+        <p><span class="todo">補上學歷、證照或其他你想強調的背景</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Contact ============ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">04 &mdash; Contact</span>
+        <h2>聯絡我</h2>
+      </div>
+      <div class="measure reveal">
+        <p class="lede">如果你正在找一位能把模糊需求收斂成可交付規格的產品夥伴，歡迎直接聯絡。</p>
+        <dl class="contact-list">
+          <div class="contact-row">
+            <dt>Email</dt>
+            <!-- TODO：請務必使用「個人」信箱，不要用公司信箱 -->
+            <dd><span class="todo">填入個人 Email</span></dd>
+          </div>
+          <div class="contact-row">
+            <dt>LinkedIn</dt>
+            <dd><span class="todo">填入 LinkedIn 網址</span></dd>
+          </div>
+          <div class="contact-row">
+            <dt>履歷</dt>
+            <dd><a class="link" href="/resume.pdf">下載 PDF</a></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span>&copy; 2026 Mallory Chen</span>
+    <span><a class="link" href="/en/" lang="en">English version</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>輔仁大學 外國學生資訊入口網 — Mallory Chen</title>
+<meta name="description" content="案例研究：輔仁大學外國學生資訊入口網。跨文化使用者的資訊架構設計與多語系內容治理。">
+
+<link rel="canonical" href="https://mallorychen.github.io/projects/fju-intl-portal/">
+<link rel="alternate" hreflang="zh-Hant" href="https://mallorychen.github.io/projects/fju-intl-portal/">
+<link rel="alternate" hreflang="en" href="https://mallorychen.github.io/en/projects/fju-intl-portal/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="輔仁大學 外國學生資訊入口網 — Mallory Chen">
+<meta property="og:locale" content="zh_TW">
+
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<link rel="stylesheet" href="../../assets/css/main.css">
+
+<script>
+  try {
+    var t = localStorage.getItem("theme");
+    if (t) document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">跳至主要內容</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/">Mallory<span>.</span>Chen</a>
+    <nav class="site-nav" aria-label="主要導覽">
+      <div class="site-nav__links">
+        <a href="/#work" aria-current="page">作品</a>
+        <a href="/#capabilities">能力</a>
+        <a href="/#about">關於</a>
+        <a href="/#contact">聯絡</a>
+      </div>
+      <div class="nav-tools">
+        <div class="lang-switch">
+          <a href="/projects/fju-intl-portal/" aria-current="true" lang="zh-Hant">中</a>
+          <a href="/en/projects/fju-intl-portal/" lang="en">EN</a>
+        </div>
+        <button class="theme-toggle" type="button" aria-label="切換深色模式">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <article>
+    <header class="case-hero">
+      <div class="container">
+        <p class="case-hero__num reveal">Case 03</p>
+        <h1 class="display case-hero__title reveal" data-reveal-delay="60">輔仁大學<br>外國學生資訊入口網</h1>
+        <p class="lede case-hero__lede reveal" data-reveal-delay="120">
+          <span class="todo">兩到三句話的定位。外國學生原本找不到什麼資訊？這個入口網把什麼變簡單了？</span>
+        </p>
+
+        <dl class="factsheet reveal" data-reveal-delay="180">
+          <div><dt>角色</dt><dd>PM / SA / UI&middot;UX</dd></div>
+          <div><dt>團隊</dt><dd>4 人（主管 1、工程師 2、我）</dd></div>
+          <div><dt>期間</dt><dd>6 個月</dd></div>
+          <div><dt>類型</dt><dd>高教數位轉型 &middot; 乙方交付</dd></div>
+          <div><dt>使用者</dt><dd>外國學生 &middot; 國際處承辦</dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">01</span>
+          <h2>背景與問題</h2>
+        </div>
+        <div class="prose measure reveal">
+          <p><span class="todo">外國學生原本怎麼取得資訊？（散落在各處室網頁？只有中文？靠學長姐口耳相傳？）具體描述一個學生的真實困境</span></p>
+          <p><span class="todo">承辦人員那一端的痛點是什麼？重複回答相同問題？信件處理量？</span></p>
+        </div>
+
+        <figure class="figure reveal">
+          <div class="todo">放上「使用者旅程圖」，呈現外國學生從入學前到在學的資訊需求節點</div>
+          <figcaption>圖 1 — 外國學生的資訊需求旅程（示意圖，已脫敏）</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">02</span>
+          <h2>我的角色</h2>
+        </div>
+        <div class="prose measure reveal">
+          <p>
+            四人團隊的產品負責人。這個專案跟前兩個最大的不同在於使用者：
+            <strong>使用者不只跨部門，還跨文化與跨語言</strong>——
+            他們對台灣的行政流程沒有預設知識，也不能假設他們看得懂中文的行政術語。
+          </p>
+          <p><span class="todo">你怎麼做使用者研究？有沒有直接訪談外國學生？語言怎麼處理？</span></p>
+          <p><span class="todo">多語系內容的治理問題：誰負責翻譯？內容更新時怎麼確保各語版本同步？這是很典型的 SA 議題，值得展開</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">03</span>
+          <h2>關鍵決策</h2>
+        </div>
+        <p class="lede measure reveal" style="margin-bottom:var(--s-5)">
+          這一段是整個案例的核心。面試官想看的不是你做了什麼，而是你在資訊不足時怎麼選。
+        </p>
+
+        <div class="measure">
+          <div class="decision reveal">
+            <p class="decision__label">決策 01</p>
+            <h3><span class="todo">決策標題，例如「資訊架構要依處室分類，還是依學生的時間軸分類」</span></h3>
+            <dl>
+              <dt>岔路</dt><dd><span class="todo">選項與代價</span></dd>
+              <dt>選擇</dt><dd><span class="todo">你的選擇與依據</span></dd>
+              <dt>取捨</dt><dd><span class="todo">放棄了什麼</span></dd>
+            </dl>
+          </div>
+
+          <div class="decision reveal">
+            <p class="decision__label">決策 02</p>
+            <h3><span class="todo">決策標題，例如「支援幾種語言、怎麼決定」</span></h3>
+            <dl>
+              <dt>岔路</dt><dd><span class="todo">選項與代價</span></dd>
+              <dt>選擇</dt><dd><span class="todo">你的選擇與依據</span></dd>
+              <dt>取捨</dt><dd><span class="todo">放棄了什麼</span></dd>
+            </dl>
+          </div>
+
+          <div class="decision reveal">
+            <p class="decision__label">決策 03</p>
+            <h3><span class="todo">決策標題</span></h3>
+            <dl>
+              <dt>岔路</dt><dd><span class="todo">選項與代價</span></dd>
+              <dt>選擇</dt><dd><span class="todo">你的選擇與依據</span></dd>
+              <dt>取捨</dt><dd><span class="todo">放棄了什麼</span></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">04</span>
+          <h2>交付與落地</h2>
+        </div>
+        <div class="prose measure reveal">
+          <p><span class="todo">產出清單：資訊架構圖、多語系內容矩陣、線框稿、內容維護流程、承辦人員操作手冊</span></p>
+          <p><span class="todo">上線後的內容維護機制怎麼設計？這決定了系統會不會在半年後失效</span></p>
+        </div>
+
+        <figure class="figure reveal">
+          <div class="todo">放上資訊架構圖或首頁介面示意圖（重繪版本）</div>
+          <figcaption>圖 2 — 入口網資訊架構（示意圖，已脫敏）</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">05</span>
+          <h2>結果</h2>
+        </div>
+
+        <div class="metrics reveal">
+          <div class="metric">
+            <div class="metric__value"><span class="todo">數字</span></div>
+            <p class="metric__label"><span class="todo">例如：承辦重複詢問件數下降</span></p>
+          </div>
+          <div class="metric">
+            <div class="metric__value"><span class="todo">數字</span></div>
+            <p class="metric__label"><span class="todo">例如：支援語言數 / 整合頁面數</span></p>
+          </div>
+          <div class="metric">
+            <div class="metric__value"><span class="todo">數字</span></div>
+            <p class="metric__label"><span class="todo">例如：上線後使用人次</span></p>
+          </div>
+        </div>
+
+        <div class="prose measure reveal">
+          <p><span class="todo">質化結果：有沒有外國學生或承辦人員的具體回饋？</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">06</span>
+          <h2>回頭看</h2>
+        </div>
+        <div class="prose measure reveal">
+          <p><span class="todo">跨文化的使用者研究，你事後覺得哪裡做得太淺？</span></p>
+          <p><span class="todo">這個專案教會你什麼關於「不要用自己的預設知識設計產品」的事？</span></p>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <div class="container">
+    <a class="next-case" href="../ehsn-booking/">
+      <span>
+        <span class="next-case__label">回到第一個案例 &mdash; 01</span>
+        <span class="next-case__title" style="display:block">東森栢馥預約管理系統</span>
+      </span>
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span>&copy; 2026 Mallory Chen</span>
+    <span><a class="link" href="/">回到首頁</a></span>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js" defer></script>
+</body>
+</html>
