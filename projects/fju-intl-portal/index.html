@@ -88,8 +88,20 @@
           <p><span class="todo">承辦人員那一端的痛點是什麼？重複回答相同問題？信件處理量？</span></p>
         </div>
 
-        <figure class="figure reveal">
-          <div class="todo">放上「使用者旅程圖」，呈現外國學生從入學前到在學的資訊需求節點</div>
+        <figure class="figure figure--diagram reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">這是骨架範例，請改成實際流程後刪掉這行</p>
+          <div class="diagram">
+<pre class="mermaid">
+            flowchart LR
+                A["入學前"] --> B["抵台與報到"]
+                B --> C["在學生活"]
+                C --> D["畢業與離境"]
+                A --> A1["申請與簽證"]
+                B --> B1["居留證、健保、銀行帳戶"]
+                C --> C1["選課、宿舍、工讀"]
+                D --> D1["離境手續與校友"]
+</pre>
+          </div>
           <figcaption>圖 1 — 外國學生的資訊需求旅程（示意圖，已脫敏）</figcaption>
         </figure>
       </div>
@@ -164,9 +176,56 @@
           <p><span class="todo">上線後的內容維護機制怎麼設計？這決定了系統會不會在半年後失效</span></p>
         </div>
 
-        <figure class="figure reveal">
-          <div class="todo">放上資訊架構圖或首頁介面示意圖（重繪版本）</div>
+        <figure class="figure figure--diagram reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">這是骨架範例，請改成實際流程後刪掉這行</p>
+          <div class="diagram">
+<pre class="mermaid">
+            flowchart TD
+                P["入口網首頁"] --> A["入學前"]
+                P --> B["報到與居留"]
+                P --> C["在學生活"]
+                P --> D["畢業與離境"]
+                A --> A1["申請流程"]
+                A --> A2["簽證與文件"]
+                B --> B1["居留證辦理"]
+                B --> B2["健保與銀行帳戶"]
+                C --> C1["課務與選課"]
+                C --> C2["宿舍與生活支援"]
+</pre>
+          </div>
           <figcaption>圖 2 — 入口網資訊架構（示意圖，已脫敏）</figcaption>
+        </figure>
+        <figure class="figure reveal">
+          <div class="shot-grid">
+            <div>
+              <!-- 換成真實畫面時，把下面整個 div 換成：
+                   <div class="shot"><img src="../../assets/img/fju-intl-portal-01.png"
+                        alt="畫面說明" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">系統畫面 1<br>../../assets/img/fju-intl-portal-01.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">這個畫面在做什麼</span></p>
+            </div>
+            <div>
+              <!-- 換成真實畫面時，把下面整個 div 換成：
+                   <div class="shot"><img src="../../assets/img/fju-intl-portal-02.png"
+                        alt="畫面說明" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">系統畫面 2<br>../../assets/img/fju-intl-portal-02.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">這個畫面在做什麼</span></p>
+            </div>
+            <div>
+              <!-- 換成真實畫面時，把下面整個 div 換成：
+                   <div class="shot"><img src="../../assets/img/fju-intl-portal-03.png"
+                        alt="畫面說明" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">系統畫面 3<br>../../assets/img/fju-intl-portal-03.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">這個畫面在做什麼</span></p>
+            </div>
+          </div>
+          <figcaption>圖 3 — 入口網實際畫面（已脫敏）</figcaption>
         </figure>
       </div>
     </section>

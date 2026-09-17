@@ -88,8 +88,20 @@
           <p><span class="todo">And on the staff side &mdash; repeatedly answering the same questions? Email volume?</span></p>
         </div>
 
-        <figure class="figure reveal">
-          <div class="todo">Add a user journey map showing information needs from pre-arrival through enrolment</div>
+        <figure class="figure figure--diagram reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">Skeleton example — replace with the real flow, then delete this line</p>
+          <div class="diagram">
+<pre class="mermaid">
+            flowchart LR
+                A["Before arrival"] --> B["Arrival and registration"]
+                B --> C["Student life"]
+                C --> D["Graduation and departure"]
+                A --> A1["Application and visa"]
+                B --> B1["Residence permit, insurance, bank account"]
+                C --> C1["Course selection, housing, part-time work"]
+                D --> D1["Departure formalities and alumni"]
+</pre>
+          </div>
           <figcaption>Fig. 1 &mdash; International student information journey (illustrative, anonymised)</figcaption>
         </figure>
       </div>
@@ -169,9 +181,56 @@
           <p><span class="todo">What maintenance mechanism did you design for after launch? That is what determines whether the portal is still useful six months later</span></p>
         </div>
 
-        <figure class="figure reveal">
-          <div class="todo">Add the information architecture diagram or a homepage mockup (redrawn)</div>
+        <figure class="figure figure--diagram reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">Skeleton example — replace with the real flow, then delete this line</p>
+          <div class="diagram">
+<pre class="mermaid">
+            flowchart TD
+                P["Portal home"] --> A["Before arrival"]
+                P --> B["Arrival and residence"]
+                P --> C["Student life"]
+                P --> D["Graduation and departure"]
+                A --> A1["Application process"]
+                A --> A2["Visa and documents"]
+                B --> B1["Residence permit"]
+                B --> B2["Insurance and banking"]
+                C --> C1["Courses and registration"]
+                C --> C2["Housing and support"]
+</pre>
+          </div>
           <figcaption>Fig. 2 &mdash; Portal information architecture (illustrative, anonymised)</figcaption>
+        </figure>
+        <figure class="figure reveal">
+          <div class="shot-grid">
+            <div>
+              <!-- Replace this whole div with:
+                   <div class="shot"><img src="../../../assets/img/fju-intl-portal-01.png"
+                        alt="Describe the screen" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">Screen 1<br>../../../assets/img/fju-intl-portal-01.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">What this screen does</span></p>
+            </div>
+            <div>
+              <!-- Replace this whole div with:
+                   <div class="shot"><img src="../../../assets/img/fju-intl-portal-02.png"
+                        alt="Describe the screen" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">Screen 2<br>../../../assets/img/fju-intl-portal-02.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">What this screen does</span></p>
+            </div>
+            <div>
+              <!-- Replace this whole div with:
+                   <div class="shot"><img src="../../../assets/img/fju-intl-portal-03.png"
+                        alt="Describe the screen" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">Screen 3<br>../../../assets/img/fju-intl-portal-03.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">What this screen does</span></p>
+            </div>
+          </div>
+          <figcaption>Fig. 3 &mdash; Screens from the live portal (anonymised)</figcaption>
         </figure>
       </div>
     </section>

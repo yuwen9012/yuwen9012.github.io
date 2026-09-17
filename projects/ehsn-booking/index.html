@@ -93,8 +93,20 @@
           <p><span class="todo">為什麼是「現在」要解決？是量體成長、法規要求，還是既有工具撐不住了？</span></p>
         </div>
 
-        <figure class="figure reveal">
-          <div class="todo">放上「導入前流程圖」。建議我用 SVG 重畫，不放真實截圖</div>
+        <figure class="figure figure--diagram reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">這是骨架範例，請改成實際流程後刪掉這行</p>
+          <div class="diagram">
+<pre class="mermaid">
+            flowchart TD
+                A["客戶來電／現場詢問"] --> B["櫃檯翻查紙本與 Excel"]
+                B --> C{"時段可用？"}
+                C -- 否 --> D["口頭回覆，重新協調"]
+                D --> B
+                C -- 是 --> E["手寫登記"]
+                E --> F["電話通知相關部門"]
+                F --> G["月底人工對帳"]
+</pre>
+          </div>
           <figcaption>圖 1 — 導入前的預約處理流程（示意圖，已脫敏）</figcaption>
         </figure>
       </div>
@@ -176,9 +188,53 @@
           <p><span class="todo">這是一套進行中的系統——說明你的版本節奏。多久上一次版？怎麼決定每一版放什麼？怎麼跟使用者溝通變更？</span></p>
         </div>
 
+        <figure class="figure figure--diagram reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">這是骨架範例，請改成實際流程後刪掉這行</p>
+          <div class="diagram">
+<pre class="mermaid">
+            flowchart LR
+                U1["櫃檯人員"] --> W["預約管理介面"]
+                U2["部門主管"] --> W
+                W --> API["應用服務層"]
+                API --> DB[("預約資料庫")]
+                API --> NT["通知服務"]
+                NT --> U3["相關部門"]
+                API --> RP["報表與對帳"]
+</pre>
+          </div>
+          <figcaption>圖 2 — 系統架構（示意圖，已脫敏）</figcaption>
+        </figure>
         <figure class="figure reveal">
-          <div class="todo">放上介面示意圖或流程圖（重繪版本，資料改為示意值）</div>
-          <figcaption>圖 2 — 核心預約流程的介面設計（示意圖，已脫敏）</figcaption>
+          <div class="shot-grid">
+            <div>
+              <!-- 換成真實畫面時，把下面整個 div 換成：
+                   <div class="shot"><img src="../../assets/img/ehsn-booking-01.png"
+                        alt="畫面說明" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">系統畫面 1<br>../../assets/img/ehsn-booking-01.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">這個畫面在做什麼</span></p>
+            </div>
+            <div>
+              <!-- 換成真實畫面時，把下面整個 div 換成：
+                   <div class="shot"><img src="../../assets/img/ehsn-booking-02.png"
+                        alt="畫面說明" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">系統畫面 2<br>../../assets/img/ehsn-booking-02.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">這個畫面在做什麼</span></p>
+            </div>
+            <div>
+              <!-- 換成真實畫面時，把下面整個 div 換成：
+                   <div class="shot"><img src="../../assets/img/ehsn-booking-03.png"
+                        alt="畫面說明" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">系統畫面 3<br>../../assets/img/ehsn-booking-03.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">這個畫面在做什麼</span></p>
+            </div>
+          </div>
+          <figcaption>圖 3 — 系統實際畫面（已脫敏，資料為示意值）</figcaption>
         </figure>
       </div>
     </section>

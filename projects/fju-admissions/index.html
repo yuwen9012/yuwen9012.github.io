@@ -88,8 +88,20 @@
           <p><span class="todo">身為乙方，客戶最初提出的需求是什麼？跟真正的問題落差在哪？（這個落差是很好的故事點）</span></p>
         </div>
 
-        <figure class="figure reveal">
-          <div class="todo">放上「資料來源與流向圖」，說明戰情室整合了哪些系統</div>
+        <figure class="figure figure--diagram reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">這是骨架範例，請改成實際流程後刪掉這行</p>
+          <div class="diagram">
+<pre class="mermaid">
+            flowchart LR
+                S1[("招生報名系統")] --> ETL["資料整合層"]
+                S2[("學籍系統")] --> ETL
+                S3[("活動與問卷紀錄")] --> ETL
+                ETL --> DW[("分析資料表")]
+                DW --> BI["戰情室儀表板"]
+                BI --> U1["招生處"]
+                BI --> U2["各系所主管"]
+</pre>
+          </div>
           <figcaption>圖 1 — 招生資料的來源與整合架構（示意圖，已脫敏）</figcaption>
         </figure>
       </div>
@@ -164,9 +176,53 @@
           <p><span class="todo">驗收怎麼進行？客戶端的接受度如何？有沒有導入期的抵抗需要處理？</span></p>
         </div>
 
+        <figure class="figure figure--diagram reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">這是骨架範例，請改成實際流程後刪掉這行</p>
+          <div class="diagram">
+<pre class="mermaid">
+            flowchart TD
+                D["戰情室首頁"] --> L1["總覽指標"]
+                D --> L2["分院系分析"]
+                D --> L3["歷年趨勢"]
+                L1 --> M1["報名人數"]
+                L1 --> M2["報到率"]
+                L2 --> M3["各系所達成率"]
+                L3 --> M4["同期比較"]
+</pre>
+          </div>
+          <figcaption>圖 2 — 儀表板的資訊層級（示意圖，已脫敏）</figcaption>
+        </figure>
         <figure class="figure reveal">
-          <div class="todo">放上儀表板介面示意圖（重繪，數據改為示意值）</div>
-          <figcaption>圖 2 — 戰情室主儀表板（示意圖，數據為模擬值）</figcaption>
+          <div class="shot-grid">
+            <div>
+              <!-- 換成真實畫面時，把下面整個 div 換成：
+                   <div class="shot"><img src="../../assets/img/fju-admissions-01.png"
+                        alt="畫面說明" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">系統畫面 1<br>../../assets/img/fju-admissions-01.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">這個畫面在做什麼</span></p>
+            </div>
+            <div>
+              <!-- 換成真實畫面時，把下面整個 div 換成：
+                   <div class="shot"><img src="../../assets/img/fju-admissions-02.png"
+                        alt="畫面說明" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">系統畫面 2<br>../../assets/img/fju-admissions-02.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">這個畫面在做什麼</span></p>
+            </div>
+            <div>
+              <!-- 換成真實畫面時，把下面整個 div 換成：
+                   <div class="shot"><img src="../../assets/img/fju-admissions-03.png"
+                        alt="畫面說明" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">系統畫面 3<br>../../assets/img/fju-admissions-03.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">這個畫面在做什麼</span></p>
+            </div>
+          </div>
+          <figcaption>圖 3 — 戰情室實際畫面（已脫敏，數據為模擬值）</figcaption>
         </figure>
       </div>
     </section>

@@ -91,8 +91,20 @@
           <p><span class="todo">Why was this the moment to solve it? Growth in volume, regulation, or tooling that stopped scaling?</span></p>
         </div>
 
-        <figure class="figure reveal">
-          <div class="todo">Add the &ldquo;before&rdquo; process diagram &mdash; redrawn as SVG, not a real screenshot</div>
+        <figure class="figure figure--diagram reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">Skeleton example — replace with the real flow, then delete this line</p>
+          <div class="diagram">
+<pre class="mermaid">
+            flowchart TD
+                A["Enquiry by phone or in person"] --> B["Front desk checks paper log and Excel"]
+                B --> C{"Slot available?"}
+                C -- No --> D["Verbal reply, renegotiate"]
+                D --> B
+                C -- Yes --> E["Handwritten entry"]
+                E --> F["Phone call to the departments involved"]
+                F --> G["Manual reconciliation at month end"]
+</pre>
+          </div>
           <figcaption>Fig. 1 &mdash; Booking workflow before the system (illustrative, anonymised)</figcaption>
         </figure>
       </div>
@@ -172,9 +184,53 @@
           <p><span class="todo">This system is still running &mdash; describe your release cadence, how each release scope is decided, and how changes are communicated to users</span></p>
         </div>
 
+        <figure class="figure figure--diagram reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">Skeleton example — replace with the real flow, then delete this line</p>
+          <div class="diagram">
+<pre class="mermaid">
+            flowchart LR
+                U1["Front desk staff"] --> W["Booking management UI"]
+                U2["Department manager"] --> W
+                W --> API["Application service layer"]
+                API --> DB[("Booking database")]
+                API --> NT["Notification service"]
+                NT --> U3["Departments involved"]
+                API --> RP["Reporting and reconciliation"]
+</pre>
+          </div>
+          <figcaption>Fig. 2 &mdash; System architecture (illustrative, anonymised)</figcaption>
+        </figure>
         <figure class="figure reveal">
-          <div class="todo">Add an interface or flow diagram (redrawn, values replaced with sample data)</div>
-          <figcaption>Fig. 2 &mdash; Core booking flow (illustrative, anonymised)</figcaption>
+          <div class="shot-grid">
+            <div>
+              <!-- Replace this whole div with:
+                   <div class="shot"><img src="../../../assets/img/ehsn-booking-01.png"
+                        alt="Describe the screen" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">Screen 1<br>../../../assets/img/ehsn-booking-01.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">What this screen does</span></p>
+            </div>
+            <div>
+              <!-- Replace this whole div with:
+                   <div class="shot"><img src="../../../assets/img/ehsn-booking-02.png"
+                        alt="Describe the screen" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">Screen 2<br>../../../assets/img/ehsn-booking-02.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">What this screen does</span></p>
+            </div>
+            <div>
+              <!-- Replace this whole div with:
+                   <div class="shot"><img src="../../../assets/img/ehsn-booking-03.png"
+                        alt="Describe the screen" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">Screen 3<br>../../../assets/img/ehsn-booking-03.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">What this screen does</span></p>
+            </div>
+          </div>
+          <figcaption>Fig. 3 &mdash; Screens from the live system (anonymised, sample data)</figcaption>
         </figure>
       </div>
     </section>

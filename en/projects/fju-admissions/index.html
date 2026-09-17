@@ -88,8 +88,20 @@
           <p><span class="todo">As the vendor, what did the client first ask for &mdash; and how did that differ from the real problem? That gap is a strong story beat</span></p>
         </div>
 
-        <figure class="figure reveal">
-          <div class="todo">Add a data-source and integration diagram showing which systems the command centre pulls from</div>
+        <figure class="figure figure--diagram reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">Skeleton example — replace with the real flow, then delete this line</p>
+          <div class="diagram">
+<pre class="mermaid">
+            flowchart LR
+                S1[("Application system")] --> ETL["Integration layer"]
+                S2[("Student records")] --> ETL
+                S3[("Events and surveys")] --> ETL
+                ETL --> DW[("Analytics tables")]
+                DW --> BI["Command centre dashboard"]
+                BI --> U1["Admissions office"]
+                BI --> U2["Department heads"]
+</pre>
+          </div>
           <figcaption>Fig. 1 &mdash; Admissions data sources and integration (illustrative, anonymised)</figcaption>
         </figure>
       </div>
@@ -169,9 +181,53 @@
           <p><span class="todo">How did acceptance go? How receptive was the client? Was there adoption resistance to manage?</span></p>
         </div>
 
+        <figure class="figure figure--diagram reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">Skeleton example — replace with the real flow, then delete this line</p>
+          <div class="diagram">
+<pre class="mermaid">
+            flowchart TD
+                D["Dashboard home"] --> L1["Headline metrics"]
+                D --> L2["By college and department"]
+                D --> L3["Year-on-year trend"]
+                L1 --> M1["Applications"]
+                L1 --> M2["Enrolment rate"]
+                L2 --> M3["Target attainment"]
+                L3 --> M4["Same-period comparison"]
+</pre>
+          </div>
+          <figcaption>Fig. 2 &mdash; Dashboard information hierarchy (illustrative, anonymised)</figcaption>
+        </figure>
         <figure class="figure reveal">
-          <div class="todo">Add a dashboard mockup (redrawn, figures replaced with sample data)</div>
-          <figcaption>Fig. 2 &mdash; Command centre main dashboard (illustrative, simulated data)</figcaption>
+          <div class="shot-grid">
+            <div>
+              <!-- Replace this whole div with:
+                   <div class="shot"><img src="../../../assets/img/fju-admissions-01.png"
+                        alt="Describe the screen" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">Screen 1<br>../../../assets/img/fju-admissions-01.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">What this screen does</span></p>
+            </div>
+            <div>
+              <!-- Replace this whole div with:
+                   <div class="shot"><img src="../../../assets/img/fju-admissions-02.png"
+                        alt="Describe the screen" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">Screen 2<br>../../../assets/img/fju-admissions-02.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">What this screen does</span></p>
+            </div>
+            <div>
+              <!-- Replace this whole div with:
+                   <div class="shot"><img src="../../../assets/img/fju-admissions-03.png"
+                        alt="Describe the screen" width="1600" height="1000" loading="lazy" decoding="async"></div> -->
+              <div class="shot shot--empty">
+                <span class="todo">Screen 3<br>../../../assets/img/fju-admissions-03.png</span>
+              </div>
+              <p class="shot-caption"><span class="todo">What this screen does</span></p>
+            </div>
+          </div>
+          <figcaption>Fig. 3 &mdash; Screens from the command centre (anonymised, simulated data)</figcaption>
         </figure>
       </div>
     </section>

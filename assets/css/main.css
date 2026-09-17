@@ -557,6 +557,65 @@ p + p { margin-top: var(--s-3); }
   color: var(--muted);
 }
 
+/* Mermaid diagrams — rendered in the browser from the source below.
+   Before mermaid loads (or if the CDN fails) the source stays readable. */
+.diagram {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+pre.mermaid {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--muted);
+  white-space: pre;
+  tab-size: 2;
+}
+pre.mermaid[data-processed="true"] {
+  white-space: normal;
+  text-align: center;
+}
+.diagram svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+/* Screenshots */
+.shot {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+.shot img { display: block; width: 100%; height: auto; }
+
+/* Placeholder until a real screenshot is dropped in. */
+.shot--empty {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  padding: var(--s-4);
+  text-align: center;
+  border-style: dashed;
+  background: var(--surface);
+}
+
+.shot-grid {
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+.shot-caption {
+  margin-top: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--muted-soft);
+}
+
 /* Next case */
 .next-case {
   display: flex;
