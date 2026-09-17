@@ -160,13 +160,9 @@
 
     var zh = (document.documentElement.lang || "").toLowerCase().indexOf("zh") === 0;
     var T = zh
-      ? { zoom: "放大檢視", hint: "點擊放大", close: "關閉", sep: "：" }
-      : { zoom: "View larger", hint: "Click to enlarge", close: "Close", sep: ": " };
+      ? { zoom: "放大檢視", close: "關閉", sep: "：" }
+      : { zoom: "View larger", close: "Close", sep: ": " };
 
-    var ICON_ZOOM =
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
-      'stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/>' +
-      '<path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>';
     var ICON_CLOSE =
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" ' +
       'stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
@@ -219,11 +215,6 @@
       btn.setAttribute("aria-label", T.zoom + (img.alt ? T.sep + img.alt : ""));
       img.parentNode.insertBefore(btn, img);
       btn.appendChild(img);
-
-      var hint = document.createElement("span");
-      hint.className = "shot__hint";
-      hint.innerHTML = ICON_ZOOM + "<span>" + T.hint + "</span>";
-      btn.appendChild(hint);
 
       btn.addEventListener("click", function () {
         var d = ensureDialog();
