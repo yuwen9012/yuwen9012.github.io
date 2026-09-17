@@ -103,8 +103,20 @@
                 C -- Yes --> E["Handwritten entry"]
                 E --> F["Phone call to the departments involved"]
                 F --> G["Manual reconciliation at month end"]
+                classDef lPeople stroke-width:1.5px
+                classDef lEntry stroke-width:1.5px
+                classDef lLogic stroke-width:1.5px
+                classDef lData stroke-width:1.5px
+                classDef lPain stroke-width:2px
+            class B,D,G lPain
+                class C lEntry
 </pre>
           </div>
+          <ul class="legend">
+            <li><span class="legend__key legend__key--lPain" aria-hidden="true"></span>Pain point</li>
+            <li><span class="legend__key legend__key--lEntry" aria-hidden="true"></span>Decision</li>
+          </ul>
+          <p class="diagram__hint" hidden>Hover or tap any node to highlight what it connects to directly</p>
           <figcaption>Fig. 1 &mdash; Booking workflow before the system (illustrative, anonymised)</figcaption>
         </figure>
       </div>
@@ -196,8 +208,24 @@
                 API --> NT["Notification service"]
                 NT --> U3["Departments involved"]
                 API --> RP["Reporting and reconciliation"]
+                classDef lPeople stroke-width:1.5px
+                classDef lEntry stroke-width:1.5px
+                classDef lLogic stroke-width:1.5px
+                classDef lData stroke-width:1.5px
+                classDef lPain stroke-width:2px
+            class U1,U2,U3 lPeople
+                class W lEntry
+                class API,NT lLogic
+                class DB,RP lData
 </pre>
           </div>
+          <ul class="legend">
+            <li><span class="legend__key legend__key--lPeople" aria-hidden="true"></span>People</li>
+            <li><span class="legend__key legend__key--lEntry" aria-hidden="true"></span>Interface</li>
+            <li><span class="legend__key legend__key--lLogic" aria-hidden="true"></span>Services</li>
+            <li><span class="legend__key legend__key--lData" aria-hidden="true"></span>Data and output</li>
+          </ul>
+          <p class="diagram__hint" hidden>Hover or tap any node to highlight what it connects to directly</p>
           <figcaption>Fig. 2 &mdash; System architecture (illustrative, anonymised)</figcaption>
         </figure>
         <figure class="figure reveal">

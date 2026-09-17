@@ -563,6 +563,89 @@ p + p { margin-top: var(--s-3); }
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+
+/* Layer keylines. Fills stay neutral; only the stroke carries the colour,
+   which keeps the diagrams reading as technical drawings rather than charts.
+   Colour never carries meaning on its own — every node is also labelled and
+   the legend names each layer. */
+:root {
+  --layer-people: #8C3A2B;
+  --layer-entry:  #2F4858;
+  --layer-logic:  #4A6145;
+  --layer-data:   #7A5C2E;
+  --layer-pain:   #A8342A;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --layer-people: #E08A76;
+    --layer-entry:  #8FB0C4;
+    --layer-logic:  #9DBE94;
+    --layer-data:   #D6B475;
+    --layer-pain:   #F08C7E;
+  }
+}
+
+:root[data-theme="dark"] {
+  --layer-people: #E08A76;
+  --layer-entry:  #8FB0C4;
+  --layer-logic:  #9DBE94;
+  --layer-data:   #D6B475;
+  --layer-pain:   #F08C7E;
+}
+
+/* Mermaid injects its own id-scoped rules, so these need !important. */
+.diagram svg .node.lPeople > :is(rect, polygon, circle, path, ellipse) { stroke: var(--layer-people) !important; }
+.diagram svg .node.lEntry  > :is(rect, polygon, circle, path, ellipse) { stroke: var(--layer-entry)  !important; }
+.diagram svg .node.lLogic  > :is(rect, polygon, circle, path, ellipse) { stroke: var(--layer-logic)  !important; }
+.diagram svg .node.lData   > :is(rect, polygon, circle, path, ellipse) { stroke: var(--layer-data)   !important; }
+.diagram svg .node.lPain   > :is(rect, polygon, circle, path, ellipse) {
+  stroke: var(--layer-pain) !important;
+  stroke-width: 2px !important;
+  stroke-dasharray: 5 3 !important;
+}
+
+/* Interaction: hover or tap a node to light its direct connections. */
+.diagram svg .node.is-interactive { cursor: pointer; }
+.diagram svg .node,
+.diagram svg .flowchart-link { transition: opacity 160ms var(--ease); }
+
+.diagram.is-focused svg .node:not(.is-lit) { opacity: 0.4; }
+.diagram.is-focused svg .flowchart-link:not(.is-lit) { opacity: 0.18; }
+.diagram svg .node.is-lit > :is(rect, polygon, circle, path, ellipse) { stroke-width: 2.5px !important; }
+.diagram svg .flowchart-link.is-lit { stroke-width: 2.5px !important; }
+
+.diagram__hint {
+  margin-top: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted-soft);
+}
+
+/* Legend — names what each keyline colour means on this diagram. */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-4);
+  margin-top: var(--s-4);
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.legend li { display: flex; align-items: center; gap: 0.5rem; }
+.legend__key {
+  width: 1.25rem;
+  height: 0;
+  flex: none;
+  border-top: 2px solid var(--border-strong);
+}
+.legend__key--lPeople { border-top-color: var(--layer-people); }
+.legend__key--lEntry  { border-top-color: var(--layer-entry); }
+.legend__key--lLogic  { border-top-color: var(--layer-logic); }
+.legend__key--lData   { border-top-color: var(--layer-data); }
+.legend__key--lPain   { border-top-color: var(--layer-pain); border-top-style: dashed; }
 pre.mermaid {
   margin: 0;
   font-family: var(--font-mono);

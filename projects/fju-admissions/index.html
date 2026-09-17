@@ -100,8 +100,24 @@
                 DW --> BI["戰情室儀表板"]
                 BI --> U1["招生處"]
                 BI --> U2["各系所主管"]
+                classDef lPeople stroke-width:1.5px
+                classDef lEntry stroke-width:1.5px
+                classDef lLogic stroke-width:1.5px
+                classDef lData stroke-width:1.5px
+                classDef lPain stroke-width:2px
+            class S1,S2,S3,DW lData
+                class ETL lLogic
+                class BI lEntry
+                class U1,U2 lPeople
 </pre>
           </div>
+          <ul class="legend">
+            <li><span class="legend__key legend__key--lData" aria-hidden="true"></span>資料來源與資料表</li>
+            <li><span class="legend__key legend__key--lLogic" aria-hidden="true"></span>整合處理</li>
+            <li><span class="legend__key legend__key--lEntry" aria-hidden="true"></span>介面</li>
+            <li><span class="legend__key legend__key--lPeople" aria-hidden="true"></span>使用者</li>
+          </ul>
+          <p class="diagram__hint" hidden>滑過或點擊任一節點，可高亮與它直接相連的路徑</p>
           <figcaption>圖 1 — 招生資料的來源與整合架構（示意圖，已脫敏）</figcaption>
         </figure>
       </div>
@@ -188,8 +204,22 @@
                 L1 --> M2["報到率"]
                 L2 --> M3["各系所達成率"]
                 L3 --> M4["同期比較"]
+                classDef lPeople stroke-width:1.5px
+                classDef lEntry stroke-width:1.5px
+                classDef lLogic stroke-width:1.5px
+                classDef lData stroke-width:1.5px
+                classDef lPain stroke-width:2px
+            class D lEntry
+                class L1,L2,L3 lLogic
+                class M1,M2,M3,M4 lData
 </pre>
           </div>
+          <ul class="legend">
+            <li><span class="legend__key legend__key--lEntry" aria-hidden="true"></span>入口頁</li>
+            <li><span class="legend__key legend__key--lLogic" aria-hidden="true"></span>分析頁</li>
+            <li><span class="legend__key legend__key--lData" aria-hidden="true"></span>指標</li>
+          </ul>
+          <p class="diagram__hint" hidden>滑過或點擊任一節點，可高亮與它直接相連的路徑</p>
           <figcaption>圖 2 — 儀表板的資訊層級（示意圖，已脫敏）</figcaption>
         </figure>
         <figure class="figure reveal">

@@ -100,8 +100,24 @@
                 DW --> BI["Command centre dashboard"]
                 BI --> U1["Admissions office"]
                 BI --> U2["Department heads"]
+                classDef lPeople stroke-width:1.5px
+                classDef lEntry stroke-width:1.5px
+                classDef lLogic stroke-width:1.5px
+                classDef lData stroke-width:1.5px
+                classDef lPain stroke-width:2px
+            class S1,S2,S3,DW lData
+                class ETL lLogic
+                class BI lEntry
+                class U1,U2 lPeople
 </pre>
           </div>
+          <ul class="legend">
+            <li><span class="legend__key legend__key--lData" aria-hidden="true"></span>Sources and tables</li>
+            <li><span class="legend__key legend__key--lLogic" aria-hidden="true"></span>Integration</li>
+            <li><span class="legend__key legend__key--lEntry" aria-hidden="true"></span>Interface</li>
+            <li><span class="legend__key legend__key--lPeople" aria-hidden="true"></span>People</li>
+          </ul>
+          <p class="diagram__hint" hidden>Hover or tap any node to highlight what it connects to directly</p>
           <figcaption>Fig. 1 &mdash; Admissions data sources and integration (illustrative, anonymised)</figcaption>
         </figure>
       </div>
@@ -193,8 +209,22 @@
                 L1 --> M2["Enrolment rate"]
                 L2 --> M3["Target attainment"]
                 L3 --> M4["Same-period comparison"]
+                classDef lPeople stroke-width:1.5px
+                classDef lEntry stroke-width:1.5px
+                classDef lLogic stroke-width:1.5px
+                classDef lData stroke-width:1.5px
+                classDef lPain stroke-width:2px
+            class D lEntry
+                class L1,L2,L3 lLogic
+                class M1,M2,M3,M4 lData
 </pre>
           </div>
+          <ul class="legend">
+            <li><span class="legend__key legend__key--lEntry" aria-hidden="true"></span>Entry page</li>
+            <li><span class="legend__key legend__key--lLogic" aria-hidden="true"></span>Analysis views</li>
+            <li><span class="legend__key legend__key--lData" aria-hidden="true"></span>Metrics</li>
+          </ul>
+          <p class="diagram__hint" hidden>Hover or tap any node to highlight what it connects to directly</p>
           <figcaption>Fig. 2 &mdash; Dashboard information hierarchy (illustrative, anonymised)</figcaption>
         </figure>
         <figure class="figure reveal">

@@ -100,8 +100,20 @@
                 B --> B1["Residence permit, insurance, bank account"]
                 C --> C1["Course selection, housing, part-time work"]
                 D --> D1["Departure formalities and alumni"]
+                classDef lPeople stroke-width:1.5px
+                classDef lEntry stroke-width:1.5px
+                classDef lLogic stroke-width:1.5px
+                classDef lData stroke-width:1.5px
+                classDef lPain stroke-width:2px
+            class A,B,C,D lEntry
+                class A1,B1,C1,D1 lData
 </pre>
           </div>
+          <ul class="legend">
+            <li><span class="legend__key legend__key--lEntry" aria-hidden="true"></span>Student stage</li>
+            <li><span class="legend__key legend__key--lData" aria-hidden="true"></span>Information needed</li>
+          </ul>
+          <p class="diagram__hint" hidden>Hover or tap any node to highlight what it connects to directly</p>
           <figcaption>Fig. 1 &mdash; International student information journey (illustrative, anonymised)</figcaption>
         </figure>
       </div>
@@ -196,8 +208,22 @@
                 B --> B2["Insurance and banking"]
                 C --> C1["Courses and registration"]
                 C --> C2["Housing and support"]
+                classDef lPeople stroke-width:1.5px
+                classDef lEntry stroke-width:1.5px
+                classDef lLogic stroke-width:1.5px
+                classDef lData stroke-width:1.5px
+                classDef lPain stroke-width:2px
+            class P lEntry
+                class A,B,C,D lLogic
+                class A1,A2,B1,B2,C1,C2 lData
 </pre>
           </div>
+          <ul class="legend">
+            <li><span class="legend__key legend__key--lEntry" aria-hidden="true"></span>Entry</li>
+            <li><span class="legend__key legend__key--lLogic" aria-hidden="true"></span>Top-level sections</li>
+            <li><span class="legend__key legend__key--lData" aria-hidden="true"></span>Content pages</li>
+          </ul>
+          <p class="diagram__hint" hidden>Hover or tap any node to highlight what it connects to directly</p>
           <figcaption>Fig. 2 &mdash; Portal information architecture (illustrative, anonymised)</figcaption>
         </figure>
         <figure class="figure reveal">

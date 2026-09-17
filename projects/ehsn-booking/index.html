@@ -105,8 +105,20 @@
                 C -- 是 --> E["手寫登記"]
                 E --> F["電話通知相關部門"]
                 F --> G["月底人工對帳"]
+                classDef lPeople stroke-width:1.5px
+                classDef lEntry stroke-width:1.5px
+                classDef lLogic stroke-width:1.5px
+                classDef lData stroke-width:1.5px
+                classDef lPain stroke-width:2px
+            class B,D,G lPain
+                class C lEntry
 </pre>
           </div>
+          <ul class="legend">
+            <li><span class="legend__key legend__key--lPain" aria-hidden="true"></span>痛點步驟</li>
+            <li><span class="legend__key legend__key--lEntry" aria-hidden="true"></span>判斷點</li>
+          </ul>
+          <p class="diagram__hint" hidden>滑過或點擊任一節點，可高亮與它直接相連的路徑</p>
           <figcaption>圖 1 — 導入前的預約處理流程（示意圖，已脫敏）</figcaption>
         </figure>
       </div>
@@ -200,8 +212,24 @@
                 API --> NT["通知服務"]
                 NT --> U3["相關部門"]
                 API --> RP["報表與對帳"]
+                classDef lPeople stroke-width:1.5px
+                classDef lEntry stroke-width:1.5px
+                classDef lLogic stroke-width:1.5px
+                classDef lData stroke-width:1.5px
+                classDef lPain stroke-width:2px
+            class U1,U2,U3 lPeople
+                class W lEntry
+                class API,NT lLogic
+                class DB,RP lData
 </pre>
           </div>
+          <ul class="legend">
+            <li><span class="legend__key legend__key--lPeople" aria-hidden="true"></span>使用者與角色</li>
+            <li><span class="legend__key legend__key--lEntry" aria-hidden="true"></span>介面</li>
+            <li><span class="legend__key legend__key--lLogic" aria-hidden="true"></span>處理與服務</li>
+            <li><span class="legend__key legend__key--lData" aria-hidden="true"></span>資料與產出</li>
+          </ul>
+          <p class="diagram__hint" hidden>滑過或點擊任一節點，可高亮與它直接相連的路徑</p>
           <figcaption>圖 2 — 系統架構（示意圖，已脫敏）</figcaption>
         </figure>
         <figure class="figure reveal">

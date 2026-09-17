@@ -46,7 +46,81 @@
       };
     }
 
-    import("https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs")
+    /* Hover or tap a node to light it and everything directly connected.
+       This is emphasis only: nothing is hidden and no information depends on
+       it, so the diagram is complete without ever touching it. */
+    function wire(container) {
+      var svg = container.querySelector("svg");
+      if (!svg) return;
+
+      var byId = {};
+      svg.querySelectorAll("g.node").forEach(function (g) {
+        /* Mermaid ids look like "<prefix>-flowchart-<nodeId>-<n>". */
+        var m = /-flowchart-(.+)-\d+$/.exec(g.id || "");
+        if (!m) return;
+        byId[m[1]] = g;
+        g.classList.add("is-interactive");
+      });
+
+      var edges = [];
+      svg.querySelectorAll("path.flowchart-link").forEach(function (p) {
+        /* data-id is the unprefixed "L_<source>_<target>_<n>"; the id
+           attribute carries a per-render prefix. Node ids must not contain
+           underscores or the split below is ambiguous. */
+        var raw = p.getAttribute("data-id") || p.id || "";
+        var m = /L_(.+)_(.+)_\d+$/.exec(raw);
+        if (m) edges.push({ el: p, from: m[1], to: m[2] });
+      });
+
+      if (!edges.length) return;
+
+      var pinned = null;
+
+      function clear() {
+        container.classList.remove("is-focused");
+        svg.querySelectorAll(".is-lit").forEach(function (el) {
+          el.classList.remove("is-lit");
+        });
+      }
+
+      function light(id) {
+        clear();
+        container.classList.add("is-focused");
+        var lit = {};
+        lit[id] = true;
+        edges.forEach(function (e) {
+          if (e.from === id) lit[e.to] = true;
+          if (e.to === id) lit[e.from] = true;
+          if (e.from === id || e.to === id) e.el.classList.add("is-lit");
+        });
+        Object.keys(lit).forEach(function (n) {
+          if (byId[n]) byId[n].classList.add("is-lit");
+        });
+      }
+
+      Object.keys(byId).forEach(function (id) {
+        var g = byId[id];
+        g.addEventListener("mouseenter", function () { if (!pinned) light(id); });
+        g.addEventListener("mouseleave", function () { if (!pinned) clear(); });
+        g.addEventListener("click", function (ev) {
+          ev.stopPropagation();
+          /* Tapping pins the highlight, which is the only way this works on
+             touch, where there is no hover. */
+          if (pinned === id) { pinned = null; clear(); }
+          else { pinned = id; light(id); }
+        });
+      });
+
+      svg.addEventListener("click", function () { pinned = null; clear(); });
+      document.addEventListener("keydown", function (ev) {
+        if (ev.key === "Escape" && pinned) { pinned = null; clear(); }
+      });
+
+      var hint = container.parentNode.querySelector(".diagram__hint");
+      if (hint) hint.hidden = false;
+    }
+
+    import("https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.esm.min.mjs")
       .then(function (mod) {
         var mermaid = mod.default;
 
@@ -56,10 +130,15 @@
             el.textContent = sources[i];
           });
           mermaid.initialize(config());
-          mermaid.run({ nodes: nodes }).catch(function () {
-            /* Invalid diagram source — the text stays visible, which is the
-               most useful failure mode while the content is still a draft. */
-          });
+          mermaid
+            .run({ nodes: nodes })
+            .then(function () {
+              document.querySelectorAll(".diagram").forEach(wire);
+            })
+            .catch(function () {
+              /* Invalid diagram source — the text stays visible, which is the
+                 most useful failure mode while the content is still a draft. */
+            });
         };
 
         renderDiagrams();
