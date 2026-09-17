@@ -181,3 +181,4 @@ grep -rc "class=\"todo\"" --include="*.html" .
 - **中英雙語**：兩個語言是獨立的 HTML，改中文版時記得同步改 `/en/`
 - **`.nojekyll` 不要刪**：刪了之後 GitHub Pages 會用 Jekyll 處理檔案
 - **深色模式**：預設跟隨系統，使用者按右上角切換後會存進 `localStorage`
+- **`docs/` 不會進版控**：裡面放的是履歷原稿與截圖原檔，含個資，只留在本機
