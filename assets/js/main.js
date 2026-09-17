@@ -28,7 +28,7 @@
         theme: "base",
         fontFamily: v("--font-sans"),
         themeVariables: {
-          fontSize: "14px",
+          fontSize: "15px",
           background: v("--surface-sunk"),
           primaryColor: v("--surface"),
           primaryTextColor: v("--ink"),
