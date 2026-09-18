@@ -944,9 +944,144 @@ body, .display, .project-item__title, .next-case__title { overflow-wrap: break-w
   }
 }
 
-/* ---------- 15. Print ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- 15. Charts ---------- */
+/* Series colours are their own tokens, kept out of the three theme blocks the
+   way the diagram keylines are. Both modes were selected separately and each
+   passed the categorical checks against its own surface: lightness band,
+   chroma floor, CVD separation, normal-vision floor, contrast. A chart fill
+   needs more chroma than a text accent, which is why these are brighter steps
+   of the brand hues rather than the brand values themselves. */
+:root {
+  --series-1: #B5472F;
+  --series-2: #0A6E99;
+  --chart-grid: var(--border);
+  --chart-axis: var(--muted-soft);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --series-1: #CE6E54;
+    --series-2: #3B95BD;
+  }
+}
+
+:root[data-theme="dark"] {
+  --series-1: #CE6E54;
+  --series-2: #3B95BD;
+}
+
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.chart__grid line { stroke: var(--chart-grid); stroke-width: 1; }
+.chart__axis line { stroke: var(--chart-axis); stroke-width: 1; }
+.chart__tick {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  fill: var(--muted-soft);
+}
+.chart__vlabel { font-family: var(--font-mono); font-size: 12px; fill: var(--muted); }
+
+/* Thin marks; values and labels wear text tokens, never the series colour. */
+.chart__line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.chart__dot { r: 4; stroke: var(--surface); stroke-width: 2; }
+.chart__bar { rx: 4; ry: 4; }
+.chart__value {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  fill: var(--ink);
+}
+.chart__s1 { stroke: var(--series-1); }
+.chart__s2 { stroke: var(--series-2); }
+.chart__f1 { fill: var(--series-1); }
+.chart__f2 { fill: var(--series-2); }
+
+.chart__crosshair { stroke: var(--chart-axis); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart__hit { fill: transparent; cursor: crosshair; }
+
+.chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-4);
+  margin-top: var(--s-3);
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.chart__legend li { display: flex; align-items: center; gap: 0.5rem; }
+.chart__key { width: 1.25rem; height: 0; flex: none; border-top: 2px solid var(--chart-axis); }
+.chart__key--s1 { border-top-color: var(--series-1); }
+.chart__key--s2 { border-top-color: var(--series-2); }
+
+.chart__tip {
+  position: absolute;
+  z-index: 2;
+  min-width: 9rem;
+  padding: var(--s-2);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.08);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--ink);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms var(--ease);
+}
+.chart__tip[data-show="true"] { opacity: 1; }
+.chart__tip b { font-weight: 500; color: var(--ink-strong); }
+.chart__tip span { color: var(--muted); }
+
+/* The table is the chart's accessible twin and is plain HTML, so the numbers
+   are readable with no script at all. */
+.chart__table { margin-top: var(--s-3); font-size: 0.875rem; }
+.chart__table summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.chart__table summary:hover { color: var(--ink-strong); }
+.chart__table table { width: 100%; border-collapse: collapse; margin-top: var(--s-3); }
+.chart__table th, .chart__table td {
+  padding: 0.4rem 0.6rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+}
+.chart__table th:first-child, .chart__table td:first-child { text-align: left; }
+.chart__table thead th {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart__tip { transition: none; }
+}
+
+/* ---------- 16. Print ---------- */
 @media print {
   .site-header, .next-case, .site-footer, .hero__actions, .todo { display: none; }
+  .chart__tip { display: none; }
+  .chart__table[open] summary { display: none; }
   body { background: #fff; color: #000; font-size: 11pt; line-height: 1.5; }
   .section { padding-block: 1rem; border: 0; }
   .reveal { opacity: 1; transform: none; }

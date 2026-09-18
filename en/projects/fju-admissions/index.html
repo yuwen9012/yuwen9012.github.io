@@ -284,6 +284,75 @@
           </div>
         </div>
 
+        <figure class="figure figure--chart reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">Mock data, for layout only. Replace with real figures, then delete this line and note the data range and anonymisation in the caption</p>
+          <div class="chart" data-chart="admissions-trend">
+            <script type="application/json">
+            {
+              "type": "multi",
+              "alt": "Line chart: applications and enrolments from 2021 to 2025. Applications range from about 6,840 to 7,420; enrolments from about 1,465 to 1,620",
+              "x": ["2021", "2022", "2023", "2024", "2025"],
+              "series": [
+                { "name": "Applications", "data": [7420, 7180, 6840, 7010, 7350] },
+                { "name": "Enrolments", "data": [1580, 1520, 1465, 1510, 1620] }
+              ]
+            }
+            </script>
+          </div>
+
+          <details class="chart__table">
+            <summary>View as a table</summary>
+            <table>
+              <caption class="visually-hidden">Applications and enrolments by year</caption>
+              <thead>
+                <tr><th scope="col">Year</th><th scope="col">Applications</th><th scope="col">Enrolments</th><th scope="col">Rate</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">2021</th><td>7,420</td><td>1,580</td><td>21.3%</td></tr>
+                <tr><th scope="row">2022</th><td>7,180</td><td>1,520</td><td>21.2%</td></tr>
+                <tr><th scope="row">2023</th><td>6,840</td><td>1,465</td><td>21.4%</td></tr>
+                <tr><th scope="row">2024</th><td>7,010</td><td>1,510</td><td>21.5%</td></tr>
+                <tr><th scope="row">2025</th><td>7,350</td><td>1,620</td><td>22.0%</td></tr>
+              </tbody>
+            </table>
+          </details>
+          <figcaption>Fig. 3 &mdash; Applications and enrolments by year (mock data)</figcaption>
+        </figure>
+
+        <figure class="figure figure--chart reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">Mock data, for layout only</p>
+          <div class="chart" data-chart="admissions-colleges">
+            <script type="application/json">
+            {
+              "type": "bar",
+              "unit": "%",
+              "name": "Enrolment rate",
+              "alt": "Bar chart: enrolment rate across eight colleges, highest Medicine at 88% and lowest Arts at 61%",
+              "categories": ["Medicine", "Management", "Science &amp; Eng.", "Foreign Lang.", "Communication", "Law", "Social Sciences", "Arts"],
+              "data": [88, 79, 76, 73, 70, 68, 65, 61]
+            }
+            </script>
+          </div>
+          <details class="chart__table">
+            <summary>View as a table</summary>
+            <table>
+              <caption class="visually-hidden">Enrolment rate by college</caption>
+              <thead><tr><th scope="col">College</th><th scope="col">Enrolment rate</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Medicine</th><td>88%</td></tr>
+                <tr><th scope="row">Management</th><td>79%</td></tr>
+                <tr><th scope="row">Science &amp; Engineering</th><td>76%</td></tr>
+                <tr><th scope="row">Foreign Languages</th><td>73%</td></tr>
+                <tr><th scope="row">Communication</th><td>70%</td></tr>
+                <tr><th scope="row">Law</th><td>68%</td></tr>
+                <tr><th scope="row">Social Sciences</th><td>65%</td></tr>
+                <tr><th scope="row">Arts</th><td>61%</td></tr>
+              </tbody>
+            </table>
+          </details>
+          <figcaption>Fig. 4 &mdash; Enrolment rate by college (mock data)</figcaption>
+        </figure>
+
         <div class="prose measure reveal">
           <p><span class="todo">Qualitative results: how did admissions decision-making change? Any feedback from the offices you can quote?</span></p>
         </div>

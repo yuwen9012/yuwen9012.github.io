@@ -229,6 +229,283 @@
     });
   })();
 
+  /* ---- Charts ---------------------------------------------------------- */
+  /* Inline SVG rather than a charting library: no dependency, no licence
+     question, it prints, and the series colours are CSS custom properties so
+     a theme change needs no re-render. The numbers also live in the page as a
+     table, which stays readable with no script at all — the chart is the
+     enhancement, the table is the data. */
+  (function initCharts() {
+    var charts = document.querySelectorAll(".chart[data-chart]");
+    if (!charts.length) return;
+
+    var NS = "http://www.w3.org/2000/svg";
+    function el(name, attrs) {
+      var n = document.createElementNS(NS, name);
+      for (var k in attrs) if (attrs[k] != null) n.setAttribute(k, attrs[k]);
+      return n;
+    }
+    function fmt(v) { return Number(v).toLocaleString(); }
+
+    /* Round the axis top to something a reader can divide in their head. */
+    function niceMax(v) {
+      if (v <= 0) return 1;
+      var mag = Math.pow(10, Math.floor(Math.log10(v)));
+      var n = v / mag;
+      var step = n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10;
+      return step * mag;
+    }
+
+    function tipFor(host) {
+      var t = host.querySelector(".chart__tip");
+      if (!t) {
+        t = document.createElement("div");
+        t.className = "chart__tip";
+        host.appendChild(t);
+      }
+      return t;
+    }
+
+    function renderLine(host, spec, W) {
+      var padL = 58, padR = 18, padT = 18, padB = 36;
+      var H = Math.max(210, Math.min(300, Math.round(W * 0.42)));
+      var plotW = W - padL - padR, plotH = H - padT - padB;
+      var all = spec.series.reduce(function (a, s) { return a.concat(s.data); }, []);
+      var max = niceMax(Math.max.apply(null, all) * 1.06);
+      var n = spec.x.length;
+      var xAt = function (i) { return padL + (n === 1 ? plotW / 2 : plotW * i / (n - 1)); };
+      var yAt = function (v) { return padT + plotH - plotH * (v / max); };
+
+      var svg = el("svg", { width: W, height: H, viewBox: "0 0 " + W + " " + H,
+                            role: "img", "aria-label": spec.alt || "" });
+
+      var g = el("g", { "class": "chart__grid" });
+      for (var t = 0; t <= 4; t++) {
+        var v = max * t / 4, y = yAt(v);
+        g.appendChild(el("line", { x1: padL, y1: y, x2: W - padR, y2: y }));
+        var lab = el("text", { "class": "chart__tick", x: padL - 10, y: y + 4, "text-anchor": "end" });
+        lab.textContent = fmt(Math.round(v));
+        g.appendChild(lab);
+      }
+      svg.appendChild(g);
+
+      var ax = el("g", { "class": "chart__axis" });
+      ax.appendChild(el("line", { x1: padL, y1: padT + plotH, x2: W - padR, y2: padT + plotH }));
+      svg.appendChild(ax);
+
+      spec.x.forEach(function (lx, i) {
+        var tx = el("text", { "class": "chart__tick", x: xAt(i), y: H - 12, "text-anchor": "middle" });
+        tx.textContent = lx;
+        svg.appendChild(tx);
+      });
+
+      spec.series.forEach(function (s, si) {
+        var pts = s.data.map(function (v, i) { return xAt(i) + "," + yAt(v); }).join(" ");
+        svg.appendChild(el("polyline", { "class": "chart__line chart__s" + (si + 1), points: pts }));
+        s.data.forEach(function (v, i) {
+          svg.appendChild(el("circle", { "class": "chart__dot chart__f" + (si + 1), cx: xAt(i), cy: yAt(v) }));
+        });
+        /* One direct label per series, on its last point — never a number on
+           every point. */
+        var li = s.data.length - 1;
+        var dl = el("text", { "class": "chart__value", x: xAt(li) - 8,
+                              y: yAt(s.data[li]) - 12, "text-anchor": "end" });
+        dl.textContent = fmt(s.data[li]);
+        svg.appendChild(dl);
+      });
+
+      var cross = el("line", { "class": "chart__crosshair", y1: padT, y2: padT + plotH, opacity: 0 });
+      svg.appendChild(cross);
+      var hit = el("rect", { "class": "chart__hit", x: padL, y: padT, width: plotW, height: plotH });
+      svg.appendChild(hit);
+
+      var tip = tipFor(host);
+      function show(ev) {
+        var r = svg.getBoundingClientRect();
+        var px = (ev.clientX - r.left) * (W / r.width);
+        var step = plotW / Math.max(1, n - 1);
+        var i = Math.max(0, Math.min(n - 1, Math.round((px - padL) / step)));
+        cross.setAttribute("x1", xAt(i));
+        cross.setAttribute("x2", xAt(i));
+        cross.setAttribute("opacity", 1);
+        tip.innerHTML = "<b>" + spec.x[i] + "</b><br>" + spec.series.map(function (s) {
+          return "<span>" + s.name + "</span> " + fmt(s.data[i]) + (spec.unit || "");
+        }).join("<br>");
+        tip.dataset.show = "true";
+        var left = xAt(i) * (r.width / W) + 12;
+        tip.style.left = Math.min(Math.max(8, left), r.width - tip.offsetWidth - 8) + "px";
+        tip.style.top = "8px";
+      }
+      function hide() { cross.setAttribute("opacity", 0); tip.dataset.show = "false"; }
+      hit.addEventListener("pointermove", show);
+      hit.addEventListener("pointerdown", show);
+      hit.addEventListener("pointerleave", hide);
+      return svg;
+    }
+
+    /* Two measures whose magnitudes differ by several times cannot share one
+       y scale — the smaller one flattens against the axis — and a second y
+       axis is never the answer. Small multiples: one panel per series, each
+       with its own scale, sharing the x axis. Each panel is titled, so the
+       series needs no legend. */
+    function renderMulti(host, spec, W) {
+      var padL = 58, padR = 18, padT = 26, padB = 34, gap = 22;
+      var k = spec.series.length;
+      var panelH = Math.max(96, Math.min(132, Math.round(W * 0.16)));
+      var H = padT * k + panelH * k + gap * (k - 1) + padB;
+      var plotW = W - padL - padR;
+      var n = spec.x.length;
+      var xAt = function (i) { return padL + (n === 1 ? plotW / 2 : plotW * i / (n - 1)); };
+
+      var svg = el("svg", { width: W, height: H, viewBox: "0 0 " + W + " " + H,
+                            role: "img", "aria-label": spec.alt || "" });
+      var tip = tipFor(host);
+      var tops = [], scales = [];
+
+      spec.series.forEach(function (s, si) {
+        var top = si * (padT + panelH + gap) + padT;
+        var max = niceMax(Math.max.apply(null, s.data) * 1.08);
+        var yAt = function (v) { return top + panelH - panelH * (v / max); };
+        tops.push(top); scales.push(yAt);
+
+        var title = el("text", { "class": "chart__vlabel", x: padL, y: top - 10 });
+        title.textContent = s.name + (spec.unit ? "（" + spec.unit.trim() + "）" : "");
+        svg.appendChild(title);
+
+        var g = el("g", { "class": "chart__grid" });
+        [0, max / 2, max].forEach(function (v) {
+          var y = yAt(v);
+          g.appendChild(el("line", { x1: padL, y1: y, x2: W - padR, y2: y }));
+          var lab = el("text", { "class": "chart__tick", x: padL - 10, y: y + 4, "text-anchor": "end" });
+          lab.textContent = fmt(Math.round(v));
+          g.appendChild(lab);
+        });
+        svg.appendChild(g);
+
+        var pts = s.data.map(function (v, i) { return xAt(i) + "," + yAt(v); }).join(" ");
+        svg.appendChild(el("polyline", { "class": "chart__line chart__s" + (si + 1), points: pts }));
+        s.data.forEach(function (v, i) {
+          svg.appendChild(el("circle", { "class": "chart__dot chart__f" + (si + 1), cx: xAt(i), cy: yAt(v) }));
+        });
+        var li = s.data.length - 1;
+        var dl = el("text", { "class": "chart__value", x: xAt(li) - 8, y: yAt(s.data[li]) - 12,
+                              "text-anchor": "end" });
+        dl.textContent = fmt(s.data[li]);
+        svg.appendChild(dl);
+      });
+
+      spec.x.forEach(function (lx, i) {
+        var tx = el("text", { "class": "chart__tick", x: xAt(i), y: H - 12, "text-anchor": "middle" });
+        tx.textContent = lx;
+        svg.appendChild(tx);
+      });
+
+      /* One crosshair spanning every panel, so the reader compares the same
+         x position across measures. */
+      var cross = el("line", { "class": "chart__crosshair", y1: tops[0],
+                               y2: tops[k - 1] + panelH, opacity: 0 });
+      svg.appendChild(cross);
+      var hit = el("rect", { "class": "chart__hit", x: padL, y: tops[0],
+                             width: plotW, height: tops[k - 1] + panelH - tops[0] });
+      svg.appendChild(hit);
+
+      function show(ev) {
+        var r = svg.getBoundingClientRect();
+        var px = (ev.clientX - r.left) * (W / r.width);
+        var step = plotW / Math.max(1, n - 1);
+        var i = Math.max(0, Math.min(n - 1, Math.round((px - padL) / step)));
+        cross.setAttribute("x1", xAt(i));
+        cross.setAttribute("x2", xAt(i));
+        cross.setAttribute("opacity", 1);
+        tip.innerHTML = "<b>" + spec.x[i] + "</b><br>" + spec.series.map(function (s) {
+          return "<span>" + s.name + "</span> " + fmt(s.data[i]) + (spec.unit || "");
+        }).join("<br>");
+        tip.dataset.show = "true";
+        var left = xAt(i) * (r.width / W) + 12;
+        tip.style.left = Math.min(Math.max(8, left), r.width - tip.offsetWidth - 8) + "px";
+        tip.style.top = "0px";
+      }
+      function hide() { cross.setAttribute("opacity", 0); tip.dataset.show = "false"; }
+      hit.addEventListener("pointermove", show);
+      hit.addEventListener("pointerdown", show);
+      hit.addEventListener("pointerleave", hide);
+      return svg;
+    }
+
+    function renderBar(host, spec, W) {
+      var padL = W < 420 ? 76 : 104, padR = 56, padT = 8, padB = 8;
+      var rowH = 34, barH = 20;
+      var H = padT + padB + rowH * spec.categories.length;
+      var plotW = W - padL - padR;
+      var max = niceMax(Math.max.apply(null, spec.data));
+      var svg = el("svg", { width: W, height: H, viewBox: "0 0 " + W + " " + H,
+                            role: "img", "aria-label": spec.alt || "" });
+      var tip = tipFor(host);
+
+      spec.categories.forEach(function (c, i) {
+        var y = padT + rowH * i + (rowH - barH) / 2;
+        var w = Math.max(2, plotW * spec.data[i] / max);
+
+        var lab = el("text", { "class": "chart__vlabel", x: padL - 12,
+                               y: y + barH / 2 + 4, "text-anchor": "end" });
+        lab.textContent = c;
+        svg.appendChild(lab);
+
+        svg.appendChild(el("rect", { "class": "chart__bar chart__f1", x: padL, y: y,
+                                     width: w, height: barH }));
+
+        var val = el("text", { "class": "chart__value", x: padL + w + 8, y: y + barH / 2 + 4 });
+        val.textContent = fmt(spec.data[i]) + (spec.unit || "");
+        svg.appendChild(val);
+
+        var hit = el("rect", { "class": "chart__hit", x: 0, y: padT + rowH * i, width: W, height: rowH });
+        hit.addEventListener("pointerenter", function () {
+          tip.innerHTML = "<b>" + c + "</b><br><span>" + (spec.name || "") + "</span> " +
+                          fmt(spec.data[i]) + (spec.unit || "");
+          tip.dataset.show = "true";
+          tip.style.top = (padT + rowH * i) + "px";
+          tip.style.left = (padL + 12) + "px";
+        });
+        hit.addEventListener("pointerleave", function () { tip.dataset.show = "false"; });
+        svg.appendChild(hit);
+      });
+
+      var axis = el("line", { "class": "chart__axis", x1: padL, y1: padT, x2: padL, y2: H - padB });
+      axis.setAttribute("stroke", "var(--chart-axis)");
+      svg.appendChild(axis);
+      return svg;
+    }
+
+    function draw(host) {
+      var raw = host.querySelector("script[type='application/json']");
+      if (!raw) return;
+      var spec;
+      try { spec = JSON.parse(raw.textContent); } catch (e) { return; }
+      var W = Math.max(280, Math.round(host.clientWidth));
+      var old = host.querySelector("svg");
+      if (old) old.remove();
+      var svg = spec.type === "bar" ? renderBar(host, spec, W)
+              : spec.type === "multi" ? renderMulti(host, spec, W)
+              : renderLine(host, spec, W);
+      host.insertBefore(svg, host.firstChild);
+    }
+
+    Array.prototype.forEach.call(charts, function (host) {
+      draw(host);
+      if ("ResizeObserver" in window) {
+        var w = host.clientWidth, t;
+        new ResizeObserver(function () {
+          /* The SVG is drawn 1:1 in pixels so axis labels keep their real
+             size, which makes a resize a redraw rather than a scale. */
+          if (Math.abs(host.clientWidth - w) < 8) return;
+          w = host.clientWidth;
+          clearTimeout(t);
+          t = setTimeout(function () { draw(host); }, 120);
+        }).observe(host);
+      }
+    });
+  })();
+
   /* ---- Theme toggle -------------------------------------------------- */
   var toggle = document.querySelector(".theme-toggle");
 

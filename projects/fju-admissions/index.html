@@ -279,6 +279,76 @@
           </div>
         </div>
 
+        <figure class="figure figure--chart reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">模擬數據，僅供版面確認。換成真實數字後刪掉這行，並在圖說註明資料範圍與脫敏方式</p>
+          <div class="chart" data-chart="admissions-trend">
+            <script type="application/json">
+            {
+              "type": "multi",
+              "unit": " 人",
+              "alt": "折線圖：2021 至 2025 年的報名人數與報到人數，報名人數約在 6,840 至 7,420 之間，報到人數約在 1,465 至 1,620 之間",
+              "x": ["2021", "2022", "2023", "2024", "2025"],
+              "series": [
+                { "name": "報名人數", "data": [7420, 7180, 6840, 7010, 7350] },
+                { "name": "報到人數", "data": [1580, 1520, 1465, 1510, 1620] }
+              ]
+            }
+            </script>
+          </div>
+
+          <details class="chart__table">
+            <summary>以表格檢視數據</summary>
+            <table>
+              <caption class="visually-hidden">歷年報名與報到人數</caption>
+              <thead>
+                <tr><th scope="col">年度</th><th scope="col">報名人數</th><th scope="col">報到人數</th><th scope="col">報到率</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">2021</th><td>7,420</td><td>1,580</td><td>21.3%</td></tr>
+                <tr><th scope="row">2022</th><td>7,180</td><td>1,520</td><td>21.2%</td></tr>
+                <tr><th scope="row">2023</th><td>6,840</td><td>1,465</td><td>21.4%</td></tr>
+                <tr><th scope="row">2024</th><td>7,010</td><td>1,510</td><td>21.5%</td></tr>
+                <tr><th scope="row">2025</th><td>7,350</td><td>1,620</td><td>22.0%</td></tr>
+              </tbody>
+            </table>
+          </details>
+          <figcaption>圖 3 — 歷年報名與報到人數（模擬數據）</figcaption>
+        </figure>
+
+        <figure class="figure figure--chart reveal">
+          <p class="todo" style="margin-bottom:var(--s-3)">模擬數據，僅供版面確認</p>
+          <div class="chart" data-chart="admissions-colleges">
+            <script type="application/json">
+            {
+              "type": "bar",
+              "unit": "%",
+              "name": "報到率",
+              "alt": "橫條圖：八個學院的報到率，最高為醫學院 88%，最低為藝術學院 61%",
+              "categories": ["醫學院", "管理學院", "理工學院", "外語學院", "傳播學院", "法律學院", "社會科學院", "藝術學院"],
+              "data": [88, 79, 76, 73, 70, 68, 65, 61]
+            }
+            </script>
+          </div>
+          <details class="chart__table">
+            <summary>以表格檢視數據</summary>
+            <table>
+              <caption class="visually-hidden">各學院報到率</caption>
+              <thead><tr><th scope="col">學院</th><th scope="col">報到率</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">醫學院</th><td>88%</td></tr>
+                <tr><th scope="row">管理學院</th><td>79%</td></tr>
+                <tr><th scope="row">理工學院</th><td>76%</td></tr>
+                <tr><th scope="row">外語學院</th><td>73%</td></tr>
+                <tr><th scope="row">傳播學院</th><td>70%</td></tr>
+                <tr><th scope="row">法律學院</th><td>68%</td></tr>
+                <tr><th scope="row">社會科學院</th><td>65%</td></tr>
+                <tr><th scope="row">藝術學院</th><td>61%</td></tr>
+              </tbody>
+            </table>
+          </details>
+          <figcaption>圖 4 — 各學院報到率分布（模擬數據）</figcaption>
+        </figure>
+
         <div class="prose measure reveal">
           <p><span class="todo">質化結果：招生決策方式有什麼改變？有沒有處室同仁的具體回饋可以引用？</span></p>
         </div>
