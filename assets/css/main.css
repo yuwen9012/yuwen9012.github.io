@@ -9,21 +9,21 @@
   color-scheme: light;
 
   /* Neutrals (editorial ink scale) */
-  --bg:            #F0ECE2;
-  --surface:       #FAF8F3;
-  --surface-sunk:  #E6E0D3;
-  --ink:           #1C1A16;
-  --ink-strong:    #0F0E0B;
-  --muted:         #414D57;
-  --muted-soft:    #606C79;
-  --border:        #DCD3C2;
-  --border-strong: #C7B198;
+  --bg:            #FDF9EC;
+  --surface:       #FFFDF7;
+  --surface-sunk:  #F7F0DE;
+  --ink:           #2A373D;
+  --ink-strong:    #1B2429;
+  --muted:         #4A5C64;
+  --muted-soft:    #5E7078;
+  --border:        #EFE7D3;
+  --border-strong: #7FA99B;
 
   /* Accent — brick red */
-  --accent:        #8C3A2B;
-  --accent-hover:  #6E2C20;
-  --accent-wash:   #F5E9E4;
-  --accent-line:   #DFC7BD;
+  --accent:        #8A5F14;
+  --accent-hover:  #6E4B0F;
+  --accent-wash:   #FCF5E8;
+  --accent-line:   #ECDAB6;
 
   /* Typography */
   --font-serif: "Newsreader", "Noto Serif TC", Georgia, "Songti TC", serif;
@@ -53,37 +53,37 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg:            #15130F;
-    --surface:       #1D1A15;
-    --surface-sunk:  #221E18;
-    --ink:           #EDE7DA;
-    --ink-strong:    #FFFBF2;
-    --muted:         #A9A294;
-    --muted-soft:    #8A8477;
-    --border:        #332E26;
-    --border-strong: #463F34;
-    --accent:        #E08A76;
-    --accent-hover:  #EFA492;
-    --accent-wash:   #271A16;
-    --accent-line:   #4C322A;
+    --bg:            #394A51;
+    --surface:       #42545C;
+    --surface-sunk:  #2A3840;
+    --ink:           #FFFFFF;
+    --ink-strong:    #FFFFFF;
+    --muted:         #D4DCE0;
+    --muted-soft:    #C2CCD1;
+    --border:        #4D5F67;
+    --border-strong: #7FA99B;
+    --accent:        #FDC57B;
+    --accent-hover:  #FFD9A3;
+    --accent-wash:   #44555C;
+    --accent-line:   #6C7F76;
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg:            #15130F;
-  --surface:       #1D1A15;
-  --surface-sunk:  #221E18;
-  --ink:           #EDE7DA;
-  --ink-strong:    #FFFBF2;
-  --muted:         #A9A294;
-  --muted-soft:    #8A8477;
-  --border:        #332E26;
-  --border-strong: #463F34;
-  --accent:        #E08A76;
-  --accent-hover:  #EFA492;
-  --accent-wash:   #271A16;
-  --accent-line:   #4C322A;
+  --bg:            #394A51;
+  --surface:       #42545C;
+  --surface-sunk:  #2A3840;
+  --ink:           #FFFFFF;
+  --ink-strong:    #FFFFFF;
+  --muted:         #D4DCE0;
+  --muted-soft:    #C2CCD1;
+  --border:        #4D5F67;
+  --border-strong: #7FA99B;
+  --accent:        #FDC57B;
+  --accent-hover:  #FFD9A3;
+  --accent-wash:   #44555C;
+  --accent-line:   #6C7F76;
 }
 
 /* ---------- 2. Reset ---------- */
@@ -582,27 +582,27 @@ p + p { margin-top: var(--s-3); }
    Colour never carries meaning on its own — every node is also labelled and
    the legend names each layer. */
 :root {
-  --layer-people: #8C3A2B;
-  --layer-entry:  #2F4858;
-  --layer-logic:  #4A6145;
+  --layer-people: #8A5F14;
+  --layer-entry:  #3A5A68;
+  --layer-logic:  #3F6B5C;
   --layer-data:   #7A5C2E;
   --layer-pain:   #A8342A;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --layer-people: #E08A76;
-    --layer-entry:  #8FB0C4;
-    --layer-logic:  #9DBE94;
+    --layer-people: #FDC57B;
+    --layer-entry:  #9AB8C6;
+    --layer-logic:  #7FA99B;
     --layer-data:   #D6B475;
     --layer-pain:   #F08C7E;
   }
 }
 
 :root[data-theme="dark"] {
-  --layer-people: #E08A76;
-  --layer-entry:  #8FB0C4;
-  --layer-logic:  #9DBE94;
+  --layer-people: #FDC57B;
+  --layer-entry:  #9AB8C6;
+  --layer-logic:  #7FA99B;
   --layer-data:   #D6B475;
   --layer-pain:   #F08C7E;
 }
@@ -1037,7 +1037,7 @@ body, .display, .project-item__title, .next-case__title { overflow-wrap: break-w
    needs more chroma than a text accent, which is why these are brighter steps
    of the brand hues rather than the brand values themselves. */
 :root {
-  --series-1: #B5472F;
+  --series-1: #A8660A;
   --series-2: #0A6E99;
   --chart-grid: var(--border);
   --chart-axis: var(--muted-soft);
@@ -1045,13 +1045,13 @@ body, .display, .project-item__title, .next-case__title { overflow-wrap: break-w
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --series-1: #CE6E54;
+    --series-1: #B8842C;
     --series-2: #3B95BD;
   }
 }
 
 :root[data-theme="dark"] {
-  --series-1: #CE6E54;
+  --series-1: #B8842C;
   --series-2: #3B95BD;
 }
 
@@ -1204,16 +1204,117 @@ body, .display, .project-item__title, .next-case__title { overflow-wrap: break-w
 .case-back:hover svg { color: var(--accent); }
 
 /* ---------- 17. Home page section rhythm ---------- */
-/* Alternating paper tones so a long single column reads as sections rather
-   than one continuous run. The two tones are already in the palette, and
-   every text tier was checked against both surfaces in both themes, so this
-   changes rhythm without changing contrast. Home page only: case pages set
-   figure and chart panels on the sunken tone, and a tinted section behind
-   them would collapse that separation. */
-main > section.section:nth-of-type(even) { background: var(--surface); }
+/* Sections alternate between the two ground colours. The dark ones redefine
+   the theme tokens rather than restating colours, so headings, links, tags,
+   buttons and hover states invert themselves — every rule already reads from
+   var(). Both token sets were validated against their own ground. */
+main > section.section:nth-of-type(even) {
+  --bg:            #394A51;
+  --surface:       #42545C;
+  --surface-sunk:  #2A3840;
+  --ink:           #FFFFFF;
+  --ink-strong:    #FFFFFF;
+  --muted:         #D4DCE0;
+  --muted-soft:    #C2CCD1;
+  --border:        #4D5F67;
+  --border-strong: #7FA99B;
+  --accent:        #FDC57B;
+  --accent-hover:  #FFD9A3;
+  --accent-wash:   #44555C;
+  --accent-line:   #6C7F76;
+  --series-1:      #B8842C;
+  --series-2:      #3B95BD;
+  background: var(--bg);
+  color: var(--ink);
+}
 main > section.section + section.section { border-top: 0; }
 
-/* ---------- 18. Print ---------- */
+/* In the dark theme the page is already slate, so the alternation shifts to
+   two depths of it rather than flipping to cream, which would read as a
+   light-mode section stranded in a dark page. */
+:root[data-theme="dark"] main > section.section:nth-of-type(even),
+:root:not([data-theme="light"]) main > section.section:nth-of-type(even) {
+  --bg:            #2F3D44;
+  --surface:       #384952;
+  --surface-sunk:  #26323A;
+  --ink:           #FFFFFF;
+  --ink-strong:    #FFFFFF;
+  --muted:         #D4DCE0;
+  --muted-soft:    #C2CCD1;
+  --border:        #435660;
+  --border-strong: #7FA99B;
+  --accent:        #FDC57B;
+  --accent-hover:  #FFD9A3;
+  --accent-wash:   #3A4A53;
+  --accent-line:   #62757C;
+}
+
+/* ---------- 18. Geometry and hover ---------- */
+/* A scale rule down the left margin, ticked where each section starts —
+   the same counting the 01/02/03 kickers do, drawn instead of written.
+   It lives in the page margin, so it is hidden once the margin is gone. */
+main > section.section { position: relative; }
+main > section.section::before {
+  content: "";
+  position: absolute;
+  left: 20px; top: 0; bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+main > section.section::after {
+  content: "";
+  position: absolute;
+  left: 20px; top: 0;
+  width: 22px; height: 2px;
+  background: var(--accent);
+}
+
+@media (max-width: 62rem) {
+  main > section.section::before,
+  main > section.section::after { display: none; }
+}
+
+/* The three project rows are where a reader decides whether to click, so
+   they answer the pointer with more than a tint: a rule grows down the
+   leading edge and the row's number takes the accent. */
+.project-item { position: relative; }
+.project-item::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 300ms var(--ease-reveal);
+}
+.project-item:hover::before { transform: scaleY(1); }
+.project-item__num { transition: color 200ms var(--ease), letter-spacing 200ms var(--ease); }
+.project-item:hover .project-item__num { color: var(--accent); letter-spacing: 0.08em; }
+
+/* A keyline draws itself around a capability, settling from slightly inset. */
+.capability { position: relative; padding: var(--s-3); margin: calc(var(--s-3) * -1); }
+.capability::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid var(--accent-line);
+  opacity: 0;
+  transform: scale(0.985);
+  transition: opacity 220ms var(--ease), transform 220ms var(--ease-reveal);
+}
+.capability:hover::after { opacity: 1; transform: scale(1); }
+.capability__num { transition: color 200ms var(--ease); }
+.capability:hover .capability__num { color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .project-item::before { transition: none; }
+  .capability::after { transition: none; transform: none; }
+  .capability:hover::after { transform: none; }
+}
+
+/* ---------- 19. Print ---------- */
 @media print {
   .site-header, .next-case, .site-footer, .hero__actions, .todo { display: none; }
   .chart__tip { display: none; }
