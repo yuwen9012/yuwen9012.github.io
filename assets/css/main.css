@@ -1111,8 +1111,6 @@ body, .display, .project-item__title, .next-case__title { overflow-wrap: break-w
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: 0;
-    position: sticky;
-    top: 5.5rem;
   }
   .case-section > .section-head .eyebrow { display: block; margin-bottom: var(--s-2); }
   /* Wide content is not bound by the text column. */
