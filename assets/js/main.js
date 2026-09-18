@@ -555,6 +555,18 @@
     return;
   }
 
+  /* Items in a group arrive one after another rather than together, which
+     reads as a sequence instead of a flash. Explicit delays already in the
+     markup win. */
+  [".project-list", ".grid-3", ".measure--wide", ".chart-group"].forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (group) {
+      var kids = group.querySelectorAll(":scope > .reveal");
+      Array.prototype.forEach.call(kids, function (el, i) {
+        if (!el.dataset.revealDelay) el.dataset.revealDelay = String(i * 70);
+      });
+    });
+  });
+
   var observer = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry) {

@@ -941,16 +941,79 @@ body, .display, .project-item__title, .next-case__title { overflow-wrap: break-w
 }
 
 /* ---------- 14. Reveal animation ---------- */
-.reveal { opacity: 0; transform: translateY(12px); }
+/* Two magnitudes, not one: text moves a little, blocks move more and scale up
+   slightly so they read as arriving rather than sliding. The easing is slow at
+   both ends and quick through the middle, which reads as precise; a plain
+   decelerate curve reads soft. Scale stays close to 1 on text, where a larger
+   value would blur the glyphs mid-transition. */
+:root {
+  --dur-reveal:    420ms;
+  --dur-reveal-lg: 560ms;
+  --ease-reveal:   cubic-bezier(0.72, 0, 0.22, 1);
+  --rv-y:  12px;
+  --rv-s:  0.99;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--rv-y)) scale(var(--rv-s));
+  will-change: transform, opacity;
+}
 .reveal.is-visible {
   opacity: 1;
   transform: none;
-  transition: opacity 400ms var(--ease), transform 400ms var(--ease);
+  transition: opacity var(--dur-reveal) var(--ease-reveal),
+              transform var(--dur-reveal) var(--ease-reveal);
+  will-change: auto;
 }
+
+/* Blocks travel further and scale more than running text. */
+.project-item.reveal,
+.capability.reveal,
+.decision.reveal,
+.figure.reveal,
+.factsheet.reveal,
+.metrics.reveal {
+  --rv-y: 20px;
+  --rv-s: 0.965;
+}
+.project-item.reveal.is-visible,
+.capability.reveal.is-visible,
+.decision.reveal.is-visible,
+.figure.reveal.is-visible,
+.factsheet.reveal.is-visible,
+.metrics.reveal.is-visible {
+  transition-duration: var(--dur-reveal-lg);
+}
+
+/* The display headline is the one piece of text worth a longer arrival. */
+.display.reveal { --rv-y: 18px; --rv-s: 0.985; }
+.display.reveal.is-visible { transition-duration: var(--dur-reveal-lg); }
+
+/* Interactive surfaces answer the pointer with position and depth, not colour
+   alone — kept to a couple of pixels so the editorial layout stays still. */
+.project-item { transition: background-color 250ms var(--ease), box-shadow 250ms var(--ease); }
+.project-item:hover {
+  background: var(--accent-wash);
+  box-shadow: 0 1px 0 var(--accent-line), 0 6px 18px -12px rgb(0 0 0 / 0.35);
+}
+
+.btn { transition: background-color 200ms var(--ease), color 200ms var(--ease),
+                   border-color 200ms var(--ease), transform 200ms var(--ease),
+                   box-shadow 200ms var(--ease); }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px -10px rgb(0 0 0 / 0.45); }
+.btn:active { transform: translateY(0); box-shadow: none; }
+
+.shot__trigger { transition: transform 220ms var(--ease); }
+.shot__trigger:hover { transform: scale(1.01); }
+
+.next-case__title { transition: color 200ms var(--ease), transform 200ms var(--ease); }
+.next-case:hover .next-case__title { transform: translateX(3px); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; }
+  .btn:hover, .shot__trigger:hover, .next-case:hover .next-case__title { transform: none; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
@@ -1140,7 +1203,17 @@ body, .display, .project-item__title, .next-case__title { overflow-wrap: break-w
 .case-back svg { width: 14px; height: 14px; }
 .case-back:hover svg { color: var(--accent); }
 
-/* ---------- 17. Print ---------- */
+/* ---------- 17. Home page section rhythm ---------- */
+/* Alternating paper tones so a long single column reads as sections rather
+   than one continuous run. The two tones are already in the palette, and
+   every text tier was checked against both surfaces in both themes, so this
+   changes rhythm without changing contrast. Home page only: case pages set
+   figure and chart panels on the sunken tone, and a tinted section behind
+   them would collapse that separation. */
+main > section.section:nth-of-type(even) { background: var(--surface); }
+main > section.section + section.section { border-top: 0; }
+
+/* ---------- 18. Print ---------- */
 @media print {
   .site-header, .next-case, .site-footer, .hero__actions, .todo { display: none; }
   .chart__tip { display: none; }
