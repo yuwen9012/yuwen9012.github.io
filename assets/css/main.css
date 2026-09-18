@@ -9,21 +9,21 @@
   color-scheme: light;
 
   /* Neutrals (editorial ink scale) */
-  --bg:            #FAFAFA;
-  --surface:       #FFFFFF;
-  --surface-sunk:  #F4F4F5;
-  --ink:           #18181B;
-  --ink-strong:    #09090B;
-  --muted:         #4B5563;
-  --muted-soft:    #65707C;
-  --border:        #E4E4E7;
-  --border-strong: #D1D1D6;
+  --bg:            #F0ECE2;
+  --surface:       #FAF8F3;
+  --surface-sunk:  #E6E0D3;
+  --ink:           #1C1A16;
+  --ink-strong:    #0F0E0B;
+  --muted:         #414D57;
+  --muted-soft:    #606C79;
+  --border:        #DCD3C2;
+  --border-strong: #C7B198;
 
   /* Accent — brick red */
   --accent:        #8C3A2B;
   --accent-hover:  #6E2C20;
-  --accent-wash:   #F8EFEC;
-  --accent-line:   #E3C8C0;
+  --accent-wash:   #F5E9E4;
+  --accent-line:   #DFC7BD;
 
   /* Typography */
   --font-serif: "Newsreader", "Noto Serif TC", Georgia, "Songti TC", serif;
@@ -50,37 +50,37 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg:            #0F0F11;
-    --surface:       #17171A;
-    --surface-sunk:  #1C1C20;
-    --ink:           #EDEDF0;
-    --ink-strong:    #FFFFFF;
-    --muted:         #A3AAB6;
-    --muted-soft:    #868D99;
-    --border:        #2A2A30;
-    --border-strong: #3A3A42;
+    --bg:            #15130F;
+    --surface:       #1D1A15;
+    --surface-sunk:  #221E18;
+    --ink:           #EDE7DA;
+    --ink-strong:    #FFFBF2;
+    --muted:         #A9A294;
+    --muted-soft:    #8A8477;
+    --border:        #332E26;
+    --border-strong: #463F34;
     --accent:        #E08A76;
     --accent-hover:  #EFA492;
-    --accent-wash:   #251A17;
-    --accent-line:   #4A312A;
+    --accent-wash:   #271A16;
+    --accent-line:   #4C322A;
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg:            #0F0F11;
-  --surface:       #17171A;
-  --surface-sunk:  #1C1C20;
-  --ink:           #EDEDF0;
-  --ink-strong:    #FFFFFF;
-  --muted:         #A3AAB6;
-  --muted-soft:    #868D99;
-  --border:        #2A2A30;
-  --border-strong: #3A3A42;
+  --bg:            #15130F;
+  --surface:       #1D1A15;
+  --surface-sunk:  #221E18;
+  --ink:           #EDE7DA;
+  --ink-strong:    #FFFBF2;
+  --muted:         #A9A294;
+  --muted-soft:    #8A8477;
+  --border:        #332E26;
+  --border-strong: #463F34;
   --accent:        #E08A76;
   --accent-hover:  #EFA492;
-  --accent-wash:   #251A17;
-  --accent-line:   #4A312A;
+  --accent-wash:   #271A16;
+  --accent-line:   #4C322A;
 }
 
 /* ---------- 2. Reset ---------- */

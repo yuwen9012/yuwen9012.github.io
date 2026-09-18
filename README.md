@@ -53,7 +53,8 @@ python -m http.server 8000
 |---|---|
 | 風格 | 編輯排版風（Editorial / Swiss） |
 | 強調色 | 磚紅 `#8C3A2B`（深色模式 `#E08A76`） |
-| 中性色 | 編輯黑 `#18181B` / 米白 `#FAFAFA` |
+| 中性色 | 暖墨 `#1C1A16` / 暖米 `#F0ECE2`（配色卡 NO.214） |
+| 強分隔線 | 卡其 `#C7B198`（同上） |
 | 標題字 | Newsreader + Noto Serif TC |
 | 內文字 | Inter + Noto Sans TC |
 | 標籤/數據 | JetBrains Mono |
