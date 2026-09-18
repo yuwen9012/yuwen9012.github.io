@@ -42,6 +42,9 @@
 
   --container: 68rem;
   --measure:   40rem;
+  /* Decision cards carry a label gutter, so they need more room than
+     running prose before the content column gets uncomfortably narrow. */
+  --measure-wide: 52rem;
   --radius:    2px;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -129,6 +132,7 @@ a { color: inherit; }
 }
 
 .measure { max-width: var(--measure); }
+.measure--wide { max-width: var(--measure-wide); }
 
 .section { padding-block: var(--s-8); }
 .section + .section { border-top: 1px solid var(--border); }
@@ -472,11 +476,20 @@ p + p { margin-top: var(--s-3); }
 
 .factsheet {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-  gap: var(--s-4);
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
   margin-top: var(--s-6);
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--border);
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  /* Hairlines belong to the cells, not to the grid gap: a gap-as-background
+     would paint the empty cells of an incomplete last row. */
+  overflow: hidden;
+}
+.factsheet > div {
+  padding: var(--s-3) var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin: 0 -1px -1px 0;
 }
 .factsheet dt {
   font-family: var(--font-mono);
@@ -1077,7 +1090,59 @@ body, .display, .project-item__title, .next-case__title { overflow-wrap: break-w
   .chart__tip { transition: none; }
 }
 
-/* ---------- 16. Print ---------- */
+/* ---------- 16. Case study two-column sections ---------- */
+/* The heading sits in its own column and stays beside the body instead of
+   running across the page, which also uses the horizontal space the single
+   column left empty. Implemented as a grid over the existing markup: the
+   heading takes column 1, prose takes column 2, and anything wide — figures,
+   decision cards, charts, metrics — spans both. */
+@media (min-width: 62rem) {
+  .case-section {
+    display: grid;
+    grid-template-columns: 19rem minmax(0, 1fr);
+    column-gap: var(--s-6);
+    align-items: start;
+  }
+  .case-section > * { grid-column: 2; }
+  .case-section > .section-head {
+    grid-column: 1;
+    grid-row: 1;
+    display: block;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+    position: sticky;
+    top: 5.5rem;
+  }
+  .case-section > .section-head .eyebrow { display: block; margin-bottom: var(--s-2); }
+  /* Wide content is not bound by the text column. */
+  .case-section > figure,
+  .case-section > .measure--wide,
+  .case-section > .metrics { grid-column: 1 / -1; }
+  /* The text column governs the measure, so the utility cap is redundant. */
+  .case-section > .prose.measure,
+  .case-section > .lede.measure { max-width: none; }
+}
+
+/* Back to the work list — case pages previously had no upward path. */
+.case-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 180ms var(--ease);
+}
+.case-back:hover { color: var(--accent); }
+.case-back svg { width: 14px; height: 14px; }
+.case-back:hover svg { color: var(--accent); }
+
+/* ---------- 17. Print ---------- */
 @media print {
   .site-header, .next-case, .site-footer, .hero__actions, .todo { display: none; }
   .chart__tip { display: none; }
