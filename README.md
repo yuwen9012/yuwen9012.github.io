@@ -1,8 +1,8 @@
-# mallorychen.github.io
+# yuwen9012.github.io
 
 個人作品集網站，用於應徵 PM / SA 職位。中英雙語，部署於 GitHub Pages。
 
-網址：https://mallorychen.github.io/
+網址：https://yuwen9012.github.io/
 
 ---
 
